@@ -36,6 +36,8 @@ function startApp() {
         myColor = random(0, 4);
         allLengthInMeters = 0;
     });
+
+    $()
 }
 
 function initMap(){
@@ -226,10 +228,19 @@ function aboutArrow(event) {
 
     if (amountInput === '0') {
         contentString+= ' (input dry cargo)';
+    } else if ($('.cargoValueOfKg').prop("checked")) {
+        contentString+= ' kg';
+    } else if ($('.cargoValueOfTon').prop("checked")) {
+        contentString+= ' ton';
     }
 
     infoWindow.setContent(contentString);
     infoWindow.setPosition(event.latLng);
+
+    google.maps.event.addListener(infoWindow, 'domready', function(){
+        $(".gm-style-iw").next("div").hide();
+    });
+
     infoWindow.open(map);
 }
 

@@ -32,6 +32,9 @@ var polylines = [];
 var strCoordinatesPolyline;
 var jsonPolyline;
 
+var cargoValueOfTon = document.getElementsByName('cargoValueOfTon');
+var cargoValueOfKg = document.getElementsByName('cargoValueOfKg');
+
 const myOffset = '100%';
 const myColors = ['red', 'blue', 'green', 'yellow', 'black']; //red, blue, green, yellow, black
 const myOpacity = 1;
