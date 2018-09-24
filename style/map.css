@@ -1,0 +1,59 @@
+#map {
+        position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#inputDiv {
+    position: absolute;
+    z-index: 2;
+}
+
+#startValue {
+    width:390px;
+    padding:8px;
+}
+
+#amountValue {
+    width:390px;
+    padding:8px;
+}
+
+#inputAmount {
+    padding-top: 2px;
+}
+
+#pushValue {
+    color: #fff;
+    text-decoration: none;
+    user-select: none;
+    background: rgb(212,75,56);
+    padding: .7em 1.5em;
+    outline: none;
+}
+
+#pushValue:hover {
+    background: rgb(232, 95, 76);
+}
+
+#pushValue:active {
+    background: rgb(152, 15, 0);
+}
+
+#newArrow {
+    color: #fff;
+    text-decoration: none;
+    user-select: none;
+    background: rgb(212,75,56);
+    padding: .7em 1.5em;
+    outline: none;
+}
+
+#newArrow:hover {
+    background: rgb(232, 95, 76);
+}
+
+#newArrow:active {
+    background: rgb(152, 15, 0);
+}
