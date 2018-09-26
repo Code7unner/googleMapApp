@@ -12,6 +12,26 @@ function checkVolume() {
 
 }
 
+function findLine(x, y){
+    for( let i = 0; i < coords.length; i++){
+        for( let j = 0; j < coords[i].length - 1; j++){
+            let a = (
+                ((coords[i][j].Y - coords[i][j + 1].Y) * x) + 
+                ((coords[i][j + 1].X - coords[i][j].X) * y) + 
+                (
+                    (coords[i][j].X * coords[i][j + 1].Y) - 
+                    (coords[i][j + 1].X * coords[i][j].Y)
+                ));
+            if ( a > -0.5 && a < 0.5){
+                let tempArr = [];
+                tempArr.push(coords[i][j]);
+                tempArr.push(coords[i][j + 1]);
+                return tempArr;
+            }
+        }
+    }
+}
+
 function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -211,16 +231,20 @@ function setZoom(){
 function aboutArrow(event) {
 
     infoWindow = new google.maps.InfoWindow;
+    
+    let lat = event.latLng.lat();
+    let lng = event.latLng.lng();
+
+
+
+    let tempArr = findLine(lat, lng);
 
     let j = 0;
 
     let contentString = '<b>Your way</b><br>';
 
-    for (let i = coords[coords.length - 1].length; i > 0; i--) {
-        contentString += '<br>' + 'Coordinate ' + j + ':<br>' +
-            coords[coords.length - 1][coords[coords.length - 1].length - i].Address;
-        j++;
-    }
+    contentString += '<br>' + 'Coordinate ' + 0 + ':<br>' + tempArr[0].Address;
+    contentString += '<br>' + 'Coordinate ' + 1 + ':<br>' + tempArr[1].Address;
 
     contentString+= '<br><br>' + '<b>Way length: </b>' +
         allLengthInMeters + ' meters' + '<br>' + '<b>Dry cargo: </b>' +
