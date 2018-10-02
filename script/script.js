@@ -8,24 +8,25 @@ $(document).ready(function(){
 
 });
 
-function checkVolume() {
-
-}
 
 function findLine(x, y){
+
     for( let i = 0; i < coords.length; i++){
         for( let j = 0; j < coords[i].length - 1; j++){
-            let a = (
-                ((coords[i][j].Y - coords[i][j + 1].Y) * x) + 
-                ((coords[i][j + 1].X - coords[i][j].X) * y) + 
-                (
-                    (coords[i][j].X * coords[i][j + 1].Y) - 
-                    (coords[i][j + 1].X * coords[i][j].Y)
-                ));
+
+            var a = (
+                ((coords[i][j].Y - coords[i][j + 1].Y) * x) +
+                ((coords[i][j + 1].X - coords[i][j].X) * y) +
+                ((coords[i][j].X * coords[i][j + 1].Y) - (coords[i][j + 1].X * coords[i][j].Y))
+            );
+
             if ( a > -0.5 && a < 0.5){
+
                 let tempArr = [];
+
                 tempArr.push(coords[i][j]);
                 tempArr.push(coords[i][j + 1]);
+
                 return tempArr;
             }
         }
@@ -75,13 +76,18 @@ function initMap(){
 
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+    var result = document.getElementById('result');
+
+    //mouseClick on map information
+    // google.maps.event.addListener(map, "mousemove", function(event) {
+    //     var lat = event.latLng.lat();
+    //     var lng = event.latLng.lng();
+    //
+    //     console.log('lat = ' + lat, ' ' + 'lng = ' + lng);
+    // });
+
     setZoom();
 
-    let input = /** @type {HTMLInputElement} */(
-        document.getElementById('startValue'));
-
-    let searchBox = new google.maps.places.SearchBox(
-        /** @type {HTMLInputElement} */(input));
 }
 
 function createLine(){
@@ -104,11 +110,16 @@ function createLine(){
 
     geocoder.geocode({ 'address': firstAddress }, function (results, status) {
         firstPosXY = results[0].geometry.location;
+        var test1 = results[0];
+
+        console.log(test1);
 
         if (coords[coords.length - 1].length > 1){
             geocoder.geocode({ 'address': secondAddress }, function (results, status) {
                 secondPosXY = results[0].geometry.location;
-                //document.getElementById('results').innerHTML += secondPosXY.toUrlValue()+"<br>";
+                var test2 = results[0];
+
+                console.log(results);
 
                 let lineSymbol = {
                     path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
@@ -141,7 +152,6 @@ function createLine(){
                 lengthInMeters = 0; //Init the length of previous route
                 lengthInMeters = Math.round(google.maps.geometry.spherical.computeLength(polyline.getPath()));
                 allLengthInMeters += lengthInMeters;
-                //document.getElementById('results').innerHTML += "Polyline is "+ lengthInMeters +" meters long<br>";
 
                 polyline.setMap(map);
 
@@ -231,11 +241,9 @@ function setZoom(){
 function aboutArrow(event) {
 
     infoWindow = new google.maps.InfoWindow;
-    
+
     let lat = event.latLng.lat();
     let lng = event.latLng.lng();
-
-
 
     let tempArr = findLine(lat, lng);
 
@@ -243,8 +251,17 @@ function aboutArrow(event) {
 
     let contentString = '<b>Your way</b><br>';
 
-    contentString += '<br>' + 'Coordinate ' + 0 + ':<br>' + tempArr[0].Address;
-    contentString += '<br>' + 'Coordinate ' + 1 + ':<br>' + tempArr[1].Address;
+    for (let i = 0; i < tempArr.length; i++) {
+        contentString+= '<br>' + 'Coordinate ' + j + ':<br>' +
+            tempArr[i].Address;
+        j++;
+    }
+
+    // for (let i = coords[coords.length - 1].length; i > 0; i--) {
+    //     contentString += '<br>' + 'Coordinate ' + j + ':<br>' +
+    //         coords[coords.length - 1][coords[coords.length - 1].length - i].Address;
+    //     j++;
+    // }
 
     contentString+= '<br><br>' + '<b>Way length: </b>' +
         allLengthInMeters + ' meters' + '<br>' + '<b>Dry cargo: </b>' +
@@ -261,9 +278,9 @@ function aboutArrow(event) {
     infoWindow.setContent(contentString);
     infoWindow.setPosition(event.latLng);
 
-    google.maps.event.addListener(infoWindow, 'domready', function(){
-        $(".gm-style-iw").next("div").hide();
-    });
+    // google.maps.event.addListener(infoWindow, 'domready', function(){
+    //     $(".gm-style-iw").next("div").hide();
+    // });
 
     infoWindow.open(map);
 }
