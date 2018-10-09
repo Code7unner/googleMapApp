@@ -1,6 +1,10 @@
 let database;
 let ref;
 
+let CI, CR, EI, ER, PI, PR;
+
+let arrOfInfoTags = ["CI", "CR", "EI", "ER", "PI", "PR"];
+
 function pushData(fc, sc) {
 
     let fb = firebase.database();
@@ -28,14 +32,24 @@ function pushData(fc, sc) {
 function getData(fc, sc){ 
     
     firebase.database().ref().child(fc).child(sc).on("value", function(snap) { 
-        var offset = snap.val(); 
+        let offset = snap.val();
         countryList.push(offset); 
         countryList[countryList.length - 1].firstCountry = fc;
         countryList[countryList.length - 1].secondCountry = sc;
-    });    
+    });
 
-    if (countryList[countryList.length - 1]["IsFill"] === undefined){
-        //Dialog window (no , yes{ open form (onSubmit pushData and close form)})
+    //Dialog window (no , yes{ open form (onSubmit pushData and close form)})
+    let submit = confirm("Fill information about this country?");
+
+    if (submit) {
+        let inputInfo = document.getElementById('inputInfo');
+
+        for (let i = 0; i < arrOfInfoTags.length; i++) {
+            $('<input>').attr({
+                type: 'text',
+                id: 'infoForm' + arrOfInfoTags[i],
+            }).appendTo(inputInfo);
+        }
     }
 }
 

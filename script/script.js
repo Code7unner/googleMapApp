@@ -92,10 +92,7 @@ function initMap(){
 
 function createLine(){
 
-    amountInput = /** @type {HTMLInputElement} */(
-        document.getElementById('amountValue').value);
-
-    coords[coords.length - 1].push(new Coord(0, 0, "", amountInput));
+    coords[coords.length - 1].push(new Coord(0, 0, ""));
 
     coords[coords.length - 1][coords[coords.length - 1].length - 1].Address = document.getElementById('startValue').value;
 
@@ -110,16 +107,10 @@ function createLine(){
 
     geocoder.geocode({ 'address': firstAddress }, function (results, status) {
         firstPosXY = results[0].geometry.location;
-        var test1 = results[0];
-
-        console.log(test1);
 
         if (coords[coords.length - 1].length > 1){
             geocoder.geocode({ 'address': secondAddress }, function (results, status) {
                 secondPosXY = results[0].geometry.location;
-                var test2 = results[0];
-
-                console.log(results);
 
                 let lineSymbol = {
                     path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
@@ -245,20 +236,20 @@ function aboutArrow(event) {
 
     infoWindow = new google.maps.InfoWindow;
 
-    let lat = event.latLng.lat();
-    let lng = event.latLng.lng();
-
-    let tempArr = findLine(lat, lng);
+    // let lat = event.latLng.lat();
+    // let lng = event.latLng.lng();
+    //
+    // let tempArr = findLine(lat, lng);
 
     let j = 0;
 
     let contentString = '<b>Your way</b><br>';
 
-    for (let i = 0; i < tempArr.length; i++) {
-        contentString+= '<br>' + 'Coordinate ' + j + ':<br>' +
-            tempArr[i].Address;
-        j++;
-    }
+    // for (let i = 0; i < tempArr.length; i++) {
+    //     contentString+= '<br>' + 'Coordinate ' + j + ':<br>' +
+    //         tempArr[i].Address;
+    //     j++;
+    // }
 
     // for (let i = coords[coords.length - 1].length; i > 0; i--) {
     //     contentString += '<br>' + 'Coordinate ' + j + ':<br>' +
@@ -266,17 +257,17 @@ function aboutArrow(event) {
     //     j++;
     // }
 
-    contentString+= '<br><br>' + '<b>Way length: </b>' +
-        allLengthInMeters + ' meters' + '<br>' + '<b>Dry cargo: </b>' +
-        coords[coords.length - 1][coords[coords.length - 1].length - 1].DryCargo;
+    // contentString+= '<br><br>' + '<b>Way length: </b>' +
+    //     allLengthInMeters + ' meters' + '<br>' + '<b>Dry cargo: </b>' +
+    //     coords[coords.length - 1][coords[coords.length - 1].length - 1].DryCargo;
 
-    if (amountInput === '0') {
-        contentString+= ' (input dry cargo)';
-    } else if ($('.cargoValueOfKg').prop("checked")) {
-        contentString+= ' kg';
-    } else if ($('.cargoValueOfTon').prop("checked")) {
-        contentString+= ' ton';
-    }
+    // if (amountInput === '0') {
+    //     contentString+= ' (input dry cargo)';
+    // } else if ($('.cargoValueOfKg').prop("checked")) {
+    //     contentString+= ' kg';
+    // } else if ($('.cargoValueOfTon').prop("checked")) {
+    //     contentString+= ' ton';
+    // }
 
     infoWindow.setContent(contentString);
     infoWindow.setPosition(event.latLng);

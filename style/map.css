@@ -1,34 +1,30 @@
-#map {
-    position: absolute;
-    width: 100%;
+html, body {
     height: 100%;
-    z-index: 1;
+}
+
+#map {
+    width: 80%;
+    height: 100%;
+    float: right;
 }
 
 #inputDiv {
-    position: fixed;
-    z-index: 2;
     height: 100%;
-    background-color: white; 
+    width: 20%;
+    background-color: white;
+    float: left;
+}
+
+#inputInfo {
+    background-color: antiquewhite;
+    height: 100%;
+    margin-right: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 #startValue {
-    width:390px;
-    padding:8px;
-}
-
-#amountValue {
-    width:390px;
-    padding:8px;
-}
-
-#economicValue {
-    width:390px;
-    padding:8px;
-}
-
-#cultureValue {
-    width:390px;
+    width: 90%;
     padding:8px;
 }
 
