@@ -40,4 +40,7 @@ const myColors = ['red', 'blue', 'green', 'yellow', 'black']; //red, blue, green
 const myOpacity = 1;
 const myWeight = 4;
 
-
+//DB
+var firstCountry;
+var secondCountry;
+var countryList = [];

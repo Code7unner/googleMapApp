@@ -47,12 +47,12 @@ function startApp() {
         }
     });
 
-    $("#pushValue").click(function(){
+    $("#pushValue").click(function() {
         createLine();
         $(this).focus();
     });
 
-    $("#newArrow").click(function () {
+    $("#newArrow").click(function() {
         coords.push(new Array());
         myColor = random(0, 4);
         allLengthInMeters = 0;
@@ -129,6 +129,9 @@ function createLine(){
                     firstPosXY,
                     secondPosXY
                 ];
+
+                //Get firstCountry: secondCountry
+                getData(firstAddress, secondAddress);
 
                 polylineOptions = {
                     path: route,

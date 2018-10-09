@@ -1,61 +1,42 @@
 let database;
 let ref;
 
-let data = {
-    amount: null,
-    economic: null,
-    culture: null
-};
+function pushData(fc, sc) {
 
-let amountValue = document.getElementById("amountValue");
-let economicValue = document.getElementById("economicValue");
-let cultureValue = document.getElementById("cultureValue");
+    let fb = firebase.database();
 
-//Init database
-database = firebase.database();
-ref = database.ref(`inputInfo`);
+    fb.ref().child(fc).child(sc).child("Cultural Information").set(CI);
+    fb.ref().child(fc).child(sc).child("Cultural Rating").set(CR);
+    fb.ref().child(fc).child(sc).child("Economic Information").set(EI);
+    fb.ref().child(fc).child(sc).child("Economic Rating").set(ER);
+    fb.ref().child(fc).child(sc).child("Political Information").set(PI);
+    fb.ref().child(fc).child(sc).child("Political Rating").set(PR);
+    fb.ref().child(fc).child(sc).child("IsFill").set(true);
 
-function pushData() {
 
-    const amountToSave = amountValue.value;
-    const economicToSave = economicValue.value;
-    const cultureToSave = cultureValue.value;
-
-    data = {
-        amount: amountToSave,
-        economic: economicToSave,
-        culture: cultureToSave
-    };
-
-    ref.push(data);
-
+    fb.ref().child(sc).child(fc).child("Cultural Information").set(CI);
+    fb.ref().child(sc).child(fc).child("Cultural Rating").set(CR);
+    fb.ref().child(sc).child(fc).child("Economic Information").set(EI);
+    fb.ref().child(sc).child(fc).child("Economic Rating").set(ER);
+    fb.ref().child(sc).child(fc).child("Political Information").set(PI);
+    fb.ref().child(sc).child(fc).child("Political Rating").set(PR);
+    fb.ref().child(sc).child(fc).child("IsFill").set(true);
 }
 
-//Press key "Search"
-$("#startValue").on('keydown',function(event){
-    if (event.keyCode === 13) {
-        pushData();
-    }
-});
-
-$("#pushValue").click(function() {
-    pushData();
-});
 
 //TODO
-//Add getData into ref.on();
-ref.on('value', errData);
+function getData(fc, sc){ 
+    
+    firebase.database().ref().child(fc).child(sc).on("value", function(snap) { 
+        var offset = snap.val(); 
+        countryList.push(offset); 
+        countryList[countryList.length - 1].firstCountry = fc;
+        countryList[countryList.length - 1].secondCountry = sc;
+    });    
 
-function getData() {
-
-    // let inputInfoList;
-    //
-    // inputInfoList = selectAll('.inputInfoListing');
-    //
-    // for (let i = 0; i < inputInfoList.length; i++) {
-    //     inputInfoList[i].remove();
-    // }
-
+    if (countryList[countryList.length - 1]["IsFill"] === undefined){
+        //Dialog window (no , yes{ open form (onSubmit pushData and close form)})
+    }
 }
 
 function errData(err) {
