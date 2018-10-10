@@ -157,45 +157,47 @@ function createLine(){
                 ];
 
                 //Get firstCountry: secondCountry
-                let a =  getData(fc, sc);                
+                getData(fc, sc).then(function () {
 
-                polylineOptions = {
-                    path: route,
-                    icons: [{
-                        icon: lineSymbol,
-                        offset: myOffset
-                    }],
-                    
-                    strokeColor: evalColor(),
-                   //  strokeColor: 'blue',
-                    strokeOpacity: myOpacity,
-                    strokeWeight: evalWeight()
-                    //strokeWeight: 4
-                };
+                    polylineOptions = {
 
-                polyline = new google.maps.Polyline(polylineOptions);
-                polylines.push(polyline);
+                        path: route,
+                        icons: [{
+                            icon: lineSymbol,
+                            offset: myOffset
+                        }],
 
-                firstLocation = convertLocationToLatLong(firstPosXY.toUrlValue());
-                secondLocation = convertLocationToLatLong(secondPosXY.toUrlValue());
-                coords[coords.length - 1][coords[coords.length - 1].length - 1].X = secondLocation[0];
-                coords[coords.length - 1][coords[coords.length - 1].length - 1].Y = secondLocation[1];
+                        strokeColor: evalColor(),
+                        strokeOpacity: myOpacity,
+                        strokeWeight: evalWeight()
 
-                lengthInMeters = 0; //Init the length of previous route
-                lengthInMeters = Math.round(google.maps.geometry.spherical.computeLength(polyline.getPath()));
-                allLengthInMeters += lengthInMeters;
+                    };
 
-                polyline.setMap(map);
+                    polyline = new google.maps.Polyline(polylineOptions);
+                    polylines.push(polyline);
 
-                //Work with increasing the map
-                plotMap(firstLocation,secondLocation);
+                    firstLocation = convertLocationToLatLong(firstPosXY.toUrlValue());
+                    secondLocation = convertLocationToLatLong(secondPosXY.toUrlValue());
+                    coords[coords.length - 1][coords[coords.length - 1].length - 1].X = secondLocation[0];
+                    coords[coords.length - 1][coords[coords.length - 1].length - 1].Y = secondLocation[1];
 
-                let coordinatesArr = polyline.getPath().getArray();
+                    lengthInMeters = 0; //Init the length of previous route
+                    lengthInMeters = Math.round(google.maps.geometry.spherical.computeLength(polyline.getPath()));
+                    allLengthInMeters += lengthInMeters;
 
-                convertPolylineToJSON(coordinatesArr);
+                    polyline.setMap(map);
 
-                // Event to create Info-window about the route
-                polyline.addListener('click', aboutArrow);
+                    //Work with increasing the map
+                    plotMap(firstLocation,secondLocation);
+
+                    let coordinatesArr = polyline.getPath().getArray();
+
+                    convertPolylineToJSON(coordinatesArr);
+
+                    // Event to create Info-window about the route
+                    polyline.addListener('click', aboutArrow);
+
+                });
             });
 
             firstAddress = secondAddress;

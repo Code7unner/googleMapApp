@@ -29,34 +29,43 @@ function pushData(fc, sc) {
 
 
 //TODO
-function getData(fc, sc){ 
-    
-    firebase.database().
+function getData(fc, sc){
+
+    return firebase.database().
     ref().
     child(fc).
     child(sc).
-    on("value", function(snap) { 
-        console.log("1[")
+    once("value").then(function (snap) {
+
         let offset = snap.val();
+        console.log('Huo1');
         countryList.push(offset); 
         countryList[countryList.length - 1].firstCountry = fc;
         countryList[countryList.length - 1].secondCountry = sc;
-        console.log("xw[")
-        if(!countryList[countryList.length - 1]["IsFill"]){
+        console.log('Hui2');
+        if(!countryList[countryList.length - 1]["IsFill"]) {
+
             let submit = confirm("Fill information about this country?");
     
             if (submit) {
+
                 let inputInfo = document.getElementById('inputInfo');
     
                 for (let i = 0; i < arrOfInfoTags.length; i++) {
                     $('<input>').attr({
                         type: 'text',
                         id: 'infoForm' + arrOfInfoTags[i],
+                        class: 'infoFormClass' + arrOfInfoTags[i]
                     }).appendTo(inputInfo);
                 }
+
+                $('<input>').attr({
+                    type: 'button',
+                    id: 'pushInfoButton',
+                    value: 'Input'
+                }).appendTo(inputInfo);
             }
         }
-        return "done"
     });
 
     //Dialog window (no , yes{ open form (onSubmit pushData and close form)})
