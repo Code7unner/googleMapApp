@@ -31,26 +31,36 @@ function pushData(fc, sc) {
 //TODO
 function getData(fc, sc){ 
     
-    firebase.database().ref().child(fc).child(sc).on("value", function(snap) { 
+    firebase.database().
+    ref().
+    child(fc).
+    child(sc).
+    on("value", function(snap) { 
+        console.log("1[")
         let offset = snap.val();
         countryList.push(offset); 
         countryList[countryList.length - 1].firstCountry = fc;
         countryList[countryList.length - 1].secondCountry = sc;
+        console.log("xw[")
+        if(!countryList[countryList.length - 1]["IsFill"]){
+            let submit = confirm("Fill information about this country?");
+    
+            if (submit) {
+                let inputInfo = document.getElementById('inputInfo');
+    
+                for (let i = 0; i < arrOfInfoTags.length; i++) {
+                    $('<input>').attr({
+                        type: 'text',
+                        id: 'infoForm' + arrOfInfoTags[i],
+                    }).appendTo(inputInfo);
+                }
+            }
+        }
+        return "done"
     });
 
     //Dialog window (no , yes{ open form (onSubmit pushData and close form)})
-    let submit = confirm("Fill information about this country?");
-
-    if (submit) {
-        let inputInfo = document.getElementById('inputInfo');
-
-        for (let i = 0; i < arrOfInfoTags.length; i++) {
-            $('<input>').attr({
-                type: 'text',
-                id: 'infoForm' + arrOfInfoTags[i],
-            }).appendTo(inputInfo);
-        }
-    }
+    
 }
 
 function errData(err) {

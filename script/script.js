@@ -90,6 +90,38 @@ function initMap(){
 
 }
 
+function translateToEng(c){
+    for (let i = 0; i < countryArrayRUS.length; i++){
+        if (c == countryArrayRUS[i]){
+            return countryArrayENG[i];
+        }
+    }
+}
+
+function evalWeight(){
+    let a =  countryList[countryList.length - 1];
+    if(!a["IsFill"])
+        return((+a["Cultural Rating"] + + a["Economic Rating"] + + a["Political Rating"]) / 3 )
+    else    
+        return 4;    
+}
+
+function evalColor(){
+    let a =  countryList[countryList.length - 1];
+    if(!a["IsFill"]){
+
+        let b =  ((+a["Cultural Rating"] + + a["Economic Rating"] + + a["Political Rating"]) )
+
+        if ( b > 0 && b < 6)
+            return myColors[1]
+        else if ( b > 5 && b < 11)
+            return myColors[2]
+        else if ( b > 10 && b < 16)   
+            return myColors[3]      
+    } else
+            return myColors[4]     
+}
+
 function createLine(){
 
     coords[coords.length - 1].push(new Coord(0, 0, ""));
@@ -107,11 +139,14 @@ function createLine(){
 
     geocoder.geocode({ 'address': firstAddress }, function (results, status) {
         firstPosXY = results[0].geometry.location;
+        var fc = results[0].address_components[results[0].address_components.length - 1]["long_name"];
+        fc = translateToEng(fc);
 
         if (coords[coords.length - 1].length > 1){
-            geocoder.geocode({ 'address': secondAddress }, function (results, status) {
+            geocoder.geocode({ 'address': secondAddress }, async function (results, status) {
                 secondPosXY = results[0].geometry.location;
-
+                var sc = results[0].address_components[results[0].address_components.length - 1]["long_name"];
+                sc = translateToEng(sc);
                 let lineSymbol = {
                     path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
                 };
@@ -122,7 +157,7 @@ function createLine(){
                 ];
 
                 //Get firstCountry: secondCountry
-                getData(firstAddress, secondAddress);
+                let a =  getData(fc, sc);                
 
                 polylineOptions = {
                     path: route,
@@ -130,9 +165,12 @@ function createLine(){
                         icon: lineSymbol,
                         offset: myOffset
                     }],
-                    strokeColor: myColors[myColor],
+                    
+                    strokeColor: evalColor(),
+                   //  strokeColor: 'blue',
                     strokeOpacity: myOpacity,
-                    strokeWeight: myWeight
+                    strokeWeight: evalWeight()
+                    //strokeWeight: 4
                 };
 
                 polyline = new google.maps.Polyline(polylineOptions);
@@ -178,6 +216,10 @@ function createLine(){
         }
     });
 }
+
+
+
+
 
 function convertLocationToLatLong(loc){
 
