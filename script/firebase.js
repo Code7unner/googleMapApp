@@ -1,9 +1,7 @@
 let database;
 let ref;
 
-let CI, CR, EI, ER, PI, PR;
-
-function pushData(fc, sc) {
+function pushData(fc, sc, CI, CR, EI, ER, PI, PR) {
 
     let fb = firebase.database();
 
@@ -26,7 +24,6 @@ function pushData(fc, sc) {
 }
 
 
-//TODO
 function getData(fc, sc){
 
     return firebase.database().
@@ -48,16 +45,36 @@ function getData(fc, sc){
             if (submit) {
 
                 let inputForm = document.getElementById('contact');
-                // let inputFormBg = document.getElementById('backgroundContact');
-
-                inputForm.style.display = "block";
-                // inputFormBg.style.display = "inline";        
+                let backGround = document.getElementById('backgroundContact');
+                backGround.style.display = "block";
             }
         }
-    });
+    });   
+}
 
-    //Dialog window (no , yes{ open form (onSubmit pushData and close form)})
-    
+function takeInfo(){
+    let CI, CR, EI, ER, PI, PR;
+
+    CI = document.getElementById('CII').value;
+    CR = document.getElementById('CRI').value;
+    EI = document.getElementById('EII').value;
+    ER = document.getElementById('ERI').value;
+    PI = document.getElementById('PII').value;
+    PR = document.getElementById('PRI').value;
+
+    pushData(countryList[countryList.length - 1].firstCountry,
+            countryList[countryList.length - 1].secondCountry,
+            CI, CR, EI, ER, PI, PR)
+
+    let backGround = document.getElementById('backgroundContact');
+    backGround.style.display = "None";
+
+    CI = '';
+    EI = '';
+    PI = '';
+    CR =  1;
+    ER =  1;
+    PR =  1;
 }
 
 function errData(err) {

@@ -219,10 +219,6 @@ function createLine(){
     });
 }
 
-
-
-
-
 function convertLocationToLatLong(loc){
 
     loc = loc.split(',').map(function(item) {
