@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Map</title>
     <meta charset="UTF-8">
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBukuqbTIlOOkQCvbIu-ejFI_i4IejYPDY&libraries=places,geometry"></script>
     <script language="JavaScript" type="text/javascript" src="script/jquery.js"></script>
@@ -22,21 +23,39 @@
 
 </head>
 <body>
+    <div id="map"></div>
+    <div>
+        <dir id="backgroundContact">
+            <form id="contact">
+              <div class="container">
+                <div class="head">
+                  <h2>Input information</h2>
+                </div>
+                  <input id="" type="text" name="CI" placeholder="Cultural Information" /><br />
+                  <input id="" type="number" name="CR" value="1" min="1" max="5" placeholder="Cultural Rating" /><br />
+                  <input id="" type="text" name="EI" placeholder="Economic Information" /><br />
+                  <input id="" type="number" name="ER" value="1" min="1" max="5" placeholder="Economic Rating"><br />
+                  <input id="" type="text" name="PI" placeholder="Political Information" /><br />
+                  <input id="" type="number" name="PR" value="1" min="1" max="5" placeholder="Political Rating">
+                  <div class="message">Message Sent</div>
+                    <button id="submit" type="submit">
+                  Send!
+                </button>
+              </div>
+            </form>
+        </dir>
 
-    <div id="inputDiv">
-
-        <input id="startValue" type="text" value="" autofocus placeholder="Keep Adding Places and searching...">
-        <br>
-        <input id="pushValue" type="button" value="Search">
-        <input id="newArrow" type="button" value="+">
-
-        <div id="inputInfo">
-
+        <div id="inputDiv">
+            <input id="startValue" type="text" value="" autofocus placeholder="Keep Adding Places and searching...">
+            <br>
+            <input id="pushValue" type="button" value="Search">
+            <input id="newArrow" type="button" value="+">
+            <div id="inputInfo"></div>
         </div>
 
-    </div>
-    <div id="map"></div>
+       
 
+    </div>
     <script src="script/variables.js"></script>
     <script src="script/firebase.js"></script>
     <script src="script/script.js"></script>

@@ -3,8 +3,6 @@ let ref;
 
 let CI, CR, EI, ER, PI, PR;
 
-let arrOfInfoTags = ["CI", "CR", "EI", "ER", "PI", "PR"];
-
 function pushData(fc, sc) {
 
     let fb = firebase.database();
@@ -38,32 +36,22 @@ function getData(fc, sc){
     once("value").then(function (snap) {
 
         let offset = snap.val();
-        console.log('Huo1');
+        
         countryList.push(offset); 
         countryList[countryList.length - 1].firstCountry = fc;
         countryList[countryList.length - 1].secondCountry = sc;
-        console.log('Hui2');
+
         if(!countryList[countryList.length - 1]["IsFill"]) {
 
             let submit = confirm("Fill information about this country?");
     
             if (submit) {
 
-                let inputInfo = document.getElementById('inputInfo');
-    
-                for (let i = 0; i < arrOfInfoTags.length; i++) {
-                    $('<input>').attr({
-                        type: 'text',
-                        id: 'infoForm' + arrOfInfoTags[i],
-                        class: 'infoFormClass' + arrOfInfoTags[i]
-                    }).appendTo(inputInfo);
-                }
+                let inputForm = document.getElementById('contact');
+                // let inputFormBg = document.getElementById('backgroundContact');
 
-                $('<input>').attr({
-                    type: 'button',
-                    id: 'pushInfoButton',
-                    value: 'Input'
-                }).appendTo(inputInfo);
+                inputForm.style.display = "block";
+                // inputFormBg.style.display = "inline";        
             }
         }
     });

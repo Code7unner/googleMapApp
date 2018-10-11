@@ -100,7 +100,7 @@ function translateToEng(c){
 
 function evalWeight(){
     let a =  countryList[countryList.length - 1];
-    if(!a["IsFill"])
+    if(a["IsFill"])
         return((+a["Cultural Rating"] + + a["Economic Rating"] + + a["Political Rating"]) / 3 )
     else    
         return 4;    
@@ -108,7 +108,7 @@ function evalWeight(){
 
 function evalColor(){
     let a =  countryList[countryList.length - 1];
-    if(!a["IsFill"]){
+    if(a["IsFill"]){
 
         let b =  ((+a["Cultural Rating"] + + a["Economic Rating"] + + a["Political Rating"]) )
 
