@@ -47,13 +47,15 @@ function getData(fc, sc){
                 let inputForm = document.getElementById('contact');
                 let backGround = document.getElementById('backgroundContact');
                 backGround.style.display = "block";
+                noFill = true;
             }
         }
     });   
 }
 
 function takeInfo(){
-    let CI, CR, EI, ER, PI, PR;
+    let CI, CR, EI, ER, PI, PR
+    let innerText = document.getElementById('outputInfo');
 
     CI = document.getElementById('CII').value;
     CR = document.getElementById('CRI').value;
@@ -64,11 +66,25 @@ function takeInfo(){
 
     pushData(countryList[countryList.length - 1].firstCountry,
             countryList[countryList.length - 1].secondCountry,
-            CI, CR, EI, ER, PI, PR)
+            CI, CR, EI, ER, PI, PR);
 
     let backGround = document.getElementById('backgroundContact');
     backGround.style.display = "None";
 
+    countryList[countryList.length - 1]["Cultural Information"] = CI;
+    countryList[countryList.length - 1]["Cultural Rating"] = CR;
+    countryList[countryList.length - 1]["Economic Information"] = EI;
+    countryList[countryList.length - 1]["Economic Rating"] = ER;
+    countryList[countryList.length - 1]["Political Information"] = PI;
+    countryList[countryList.length - 1]["Political Rating"] = PR;
+
+    let innerText = document.getElementById('outputInfo').value;
+
+    innerText+= countryList[countryList.length - 1]["Cultural Information"];
+    innerText+= countryList[countryList.length - 1]["Economic Information"];
+    innerText+= countryList[countryList.length - 1]["Political Information"];
+
+    noFill = false;
     CI = '';
     EI = '';
     PI = '';

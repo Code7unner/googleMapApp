@@ -48,3 +48,4 @@ const myWeight = 4;
 var firstCountry;
 var secondCountry;
 var countryList = [];
+var noFill = false;

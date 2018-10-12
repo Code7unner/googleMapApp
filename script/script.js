@@ -78,14 +78,6 @@ function initMap(){
 
     var result = document.getElementById('result');
 
-    //mouseClick on map information
-    // google.maps.event.addListener(map, "mousemove", function(event) {
-    //     var lat = event.latLng.lat();
-    //     var lng = event.latLng.lng();
-    //
-    //     console.log('lat = ' + lat, ' ' + 'lng = ' + lng);
-    // });
-
     setZoom();
 
 }
@@ -158,6 +150,15 @@ function createLine(){
 
                 //Get firstCountry: secondCountry
                 getData(fc, sc).then(function () {
+
+                    if (!noFill) {
+
+                        let innerText = document.getElementById('outputInfo').value;
+
+                        innerText+= countryList[countryList.length - 1]["Cultural Information"];
+                        innerText+= countryList[countryList.length - 1]["Economic Information"];
+                        innerText+= countryList[countryList.length - 1]["Political Information"];
+                    }
 
                     polylineOptions = {
 
