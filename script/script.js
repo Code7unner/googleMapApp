@@ -92,23 +92,68 @@ function translateToEng(c){
 
 function evalWeight(){
     let a =  countryList[countryList.length - 1];
-    if(a["IsFill"])
-        return((+a["Cultural Rating"] + + a["Economic Rating"] + + a["Political Rating"]) / 3 )
+    let value = 0;
+    let count = 0;
+    if(a["IsFill"]){
+        if (a["Cultural Information"].length > 1){
+            for (let i = 1; i < a["Cultural Information"].length; i++){
+                value += a["Cultural Information"][i].rating;
+                count++
+            }
+        } 
+
+        if (a["Economic Information"].length > 1){
+            for (let i = 1; i < a["Economic Information"].length; i++){
+                value += a["Economic Information"][i].rating;
+                count++
+            }
+        }
+
+        if (a["Political Information"].length > 1){
+            for (let i = 1; i < a["Political Information"].length; i++){
+                value += a["Political Information"][i].rating;
+                count++
+            }
+        }
+        return value / count;
+    }        
     else    
         return 4;    
 }
 
 function evalColor(){
     let a =  countryList[countryList.length - 1];
+    let value = 0;
+    let count = 0;
     if(a["IsFill"]){
 
-        let b =  ((+a["Cultural Rating"] + + a["Economic Rating"] + + a["Political Rating"]) )
+        if (a["Cultural Information"].length > 1){
+            for (let i = 1; i < a["Cultural Information"].length; i++){
+                value += a["Cultural Information"][i].rating;
+                count++
+            }
+        } 
 
-        if ( b > 0 && b < 6)
+        if (a["Economic Information"].length > 1){
+            for (let i = 1; i < a["Economic Information"].length; i++){
+                value += a["Economic Information"][i].rating;
+                count++
+            }
+        }
+
+        if (a["Political Information"].length > 1){
+            for (let i = 1; i < a["Political Information"].length; i++){
+                value += a["Political Information"][i].rating;
+                count++
+            }
+        }
+
+        value / count;
+        if ( value > 0 && value < 2)
             return myColors[1]
-        else if ( b > 5 && b < 11)
+        else if (value > 1.99  && value < 3)
             return myColors[2]
-        else if ( b > 10 && b < 16)   
+        else if ( value > 2.99 && value < 5.01)   
             return myColors[3]      
     } else
             return myColors[4]     

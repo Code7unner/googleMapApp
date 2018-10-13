@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBukuqbTIlOOkQCvbIu-ejFI_i4IejYPDY&libraries=places,geometry"></script>
     <script language="JavaScript" type="text/javascript" src="script/jquery.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+    <script src="script/c3.min.js"></script>
     <link rel="stylesheet" href="style/map.css">
+    <link rel="stylesheet" href="style/c3.css">
 
     <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
     <script>
@@ -31,11 +34,14 @@
                   <h2>Input information</h2>
                 </div>                
                   <input class="contactInput" id="CII" type="text" name="CI" placeholder="Cultural Information" /><br />
-                  <input class="contactInput" id="CRI" type="number" name="CR" value="1" min="1" max="5" placeholder="Cultural Rating" /><br />
+                  <input class="contactInput intInput" id="CRI" type="number" name="CR" value="1" min="1" max="5" placeholder="Cultural Rating" />
+                  <input class="contactInput intInput" id="CRI" type="number" name="CY" value="0" placeholder="Year" /><br />
                   <input class="contactInput" id="EII" type="text" name="EI" placeholder="Economic Information" /><br />
-                  <input class="contactInput" id="ERI" type="number" name="ER" value="1" min="1" max="5" placeholder="Economic Rating"><br />
+                  <input class="contactInput intInput" id="ERI" type="number" name="ER" value="1" min="1" max="5" placeholder="Economic Rating">
+                  <input class="contactInput intInput" id="EYI" type="number" name="EY" value="0" placeholder="Year" /><br />
                   <input class="contactInput" id="PII" type="text" name="PI" placeholder="Political Information" /><br />
-                  <input class="contactInput" id="PRI" type="number" name="PR" value="1" min="1" max="5" placeholder="Political Rating">
+                  <input class="contactInput intInput" id="PRI" type="number" name="PR" value="1" min="1" max="5" placeholder="Political Rating">
+                  <input class="contactInput intInput" id="PYI" type="number" name="PY" value="0" placeholder="Year" />
                   <div class="message">Message Sent</div>
                     <button id="submit" type="button" onclick="takeInfo()">
                   Send!
@@ -49,12 +55,13 @@
             <br>
             <input class="searchInput" id="pushValue" type="button" value="Search">
             <input class="searchInput" id="newArrow" type="button" value="+">
-            <div id="inputInfo"></div>
+            <div id="chart"></div>
             <textarea readonly cols="50" rows="20" id="outputInfo">Hello, boi</textarea>
         </div>     
-    </div>
+    </div>    
     <script src="script/variables.js"></script>
     <script src="script/firebase.js"></script>
     <script src="script/script.js"></script>
+    <script src="script/chart.js"></script>
 </body>
 </html>

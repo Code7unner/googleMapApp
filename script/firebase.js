@@ -1,25 +1,19 @@
 let database;
 let ref;
 
-function pushData(fc, sc, CI, CR, EI, ER, PI, PR) {
+function pushData(fc, sc, CI, EI, PI) {
 
     let fb = firebase.database();
 
     fb.ref().child(fc).child(sc).child("Cultural Information").set(CI);
-    fb.ref().child(fc).child(sc).child("Cultural Rating").set(CR);
     fb.ref().child(fc).child(sc).child("Economic Information").set(EI);
-    fb.ref().child(fc).child(sc).child("Economic Rating").set(ER);
     fb.ref().child(fc).child(sc).child("Political Information").set(PI);
-    fb.ref().child(fc).child(sc).child("Political Rating").set(PR);
     fb.ref().child(fc).child(sc).child("IsFill").set(true);
 
 
     fb.ref().child(sc).child(fc).child("Cultural Information").set(CI);
-    fb.ref().child(sc).child(fc).child("Cultural Rating").set(CR);
     fb.ref().child(sc).child(fc).child("Economic Information").set(EI);
-    fb.ref().child(sc).child(fc).child("Economic Rating").set(ER);
     fb.ref().child(sc).child(fc).child("Political Information").set(PI);
-    fb.ref().child(sc).child(fc).child("Political Rating").set(PR);
     fb.ref().child(sc).child(fc).child("IsFill").set(true);
 }
 
@@ -59,24 +53,46 @@ function takeInfo(){
 
     CI = document.getElementById('CII').value;
     CR = document.getElementById('CRI').value;
+    CY = document.getElementById('CYI').value;
     EI = document.getElementById('EII').value;
     ER = document.getElementById('ERI').value;
+    EY = document.getElementById('EYI').value;
     PI = document.getElementById('PII').value;
     PR = document.getElementById('PRI').value;
+    PY = document.getElementById('PYI').value;
 
-    pushData(countryList[countryList.length - 1].firstCountry,
-            countryList[countryList.length - 1].secondCountry,
-            CI, CR, EI, ER, PI, PR);
 
+    
     let backGround = document.getElementById('backgroundContact');
     backGround.style.display = "None";
 
-    countryList[countryList.length - 1]["Cultural Information"] = CI;
-    countryList[countryList.length - 1]["Cultural Rating"] = CR;
-    countryList[countryList.length - 1]["Economic Information"] = EI;
-    countryList[countryList.length - 1]["Economic Rating"] = ER;
-    countryList[countryList.length - 1]["Political Information"] = PI;
-    countryList[countryList.length - 1]["Political Rating"] = PR;
+    let temp = {
+        info: " ",
+        rating: 0,
+        year: 0
+    }
+    temp.info = CI;
+    temp.rating = CR;
+    temp.year = CY
+    countryList[countryList.length - 1]["Cultural Information"].push(temp);
+
+    temp.info = EI;
+    temp.rating = ER;
+    temp.year = EY;
+    countryList[countryList.length - 1]["Economic Information"].push(temp)
+
+    temp.info = PI;
+    temp.info = PR;
+    temp.year = PY;
+    countryList[countryList.length - 1]["Political Information"].push(temp);
+
+
+    pushData(countryList[countryList.length - 1].firstCountry,
+            countryList[countryList.length - 1].secondCountry,
+            countryList[countryList.length - 1]["Cultural Information"],
+            countryList[countryList.length - 1]["Economic Information"],
+            countryList[countryList.length - 1]["Political Information"]);
+
 
     let innerText = document.getElementById('outputInfo').value;
 
