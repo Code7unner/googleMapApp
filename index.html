@@ -48,6 +48,32 @@
                 </button>
               </div>
             </form>
+            <form id="customContact">
+                <div class="container">
+                  <div class="head">
+                    <h2>Input information</h2>
+                  </div>          
+                    <div class="select">
+                        <select name="ccountryList" id="firstCountrySelector" class="select saveselect"></select> 
+                    </div>  
+                    <div class="select">
+                        <select name="ccountryList" id="secondCountrySelector" class="select saveselect"></select><br/>
+                    </div> 
+                    <input class="contactInput" id="CCII" type="text" name="CI" placeholder="Cultural Information" /><br />
+                    <input class="contactInput intInput" id="CCRI" type="number" name="CR" value="1" min="1" max="5" placeholder="Cultural Rating" />
+                    <input class="contactInput intInput" id="CCRI" type="number" name="CY" value="0" placeholder="Year" /><br />
+                    <input class="contactInput" id="CEII" type="text" name="EI" placeholder="Economic Information" /><br />
+                    <input class="contactInput intInput" id="CERI" type="number" name="ER" value="1" min="1" max="5" placeholder="Economic Rating">
+                    <input class="contactInput intInput" id="CEYI" type="number" name="EY" value="0" placeholder="Year" /><br />
+                    <input class="contactInput" id="CPII" type="text" name="PI" placeholder="Political Information" /><br />
+                    <input class="contactInput intInput" id="CPRI" type="number" name="PR" value="1" min="1" max="5" placeholder="Political Rating">
+                    <input class="contactInput intInput" id="CPYI" type="number" name="PY" value="0" placeholder="Year" />
+                    <div class="message">Message Sent</div>
+                      <button id="submitCustom" type="button" onclick="takeCustomInfo()">
+                    Send!
+                  </button>
+                </div>
+              </form>
         </dir>
 
         <div id="inputDiv">
@@ -55,6 +81,7 @@
             <br>
             <input class="searchInput" id="pushValue" type="button" value="Search">
             <input class="searchInput" id="newArrow" type="button" value="+">
+            <input class="searchInput" id="addCustomInfo" type="button" onclick="showCustomForm()" value="Add Info">
             <div id="chart"></div>
             <textarea readonly cols="50" rows="20" id="outputInfo">Hello, boi</textarea>
         </div>     

@@ -41,6 +41,7 @@ function getData(fc, sc){
                 let inputForm = document.getElementById('contact');
                 let backGround = document.getElementById('backgroundContact');
                 backGround.style.display = "block";
+                backGround.style.display = "block";
                 noFill = true;
             }
         }
@@ -60,8 +61,6 @@ function takeInfo(){
     PI = document.getElementById('PII').value;
     PR = document.getElementById('PRI').value;
     PY = document.getElementById('PYI').value;
-
-
     
     let backGround = document.getElementById('backgroundContact');
     backGround.style.display = "None";
@@ -107,6 +106,81 @@ function takeInfo(){
     CR =  1;
     ER =  1;
     PR =  1;
+}
+
+
+function takeCustomInfo(){
+    let CI, CR, EI, ER, PI, PR, FC, SC, bg, cf
+    bg = document.getElementById('backgroundContact');
+    cf = document.getElementById('customContact');
+    let a 
+
+    FC = document.getElementById('CFCI').value;
+    SC = document.getElementById('CSCI').value;
+    CI = document.getElementById('CCII').value;
+    CR = document.getElementById('CCRI').value;
+    CY = document.getElementById('CCYI').value;
+    EI = document.getElementById('CEII').value;
+    ER = document.getElementById('CERI').value;
+    EY = document.getElementById('CEYI').value;
+    PI = document.getElementById('CPII').value;
+    PR = document.getElementById('CPRI').value;
+    PY = document.getElementById('CPYI').value;
+        bg.style.display = "none";
+        cf.style.display = "none";
+    return firebase.database().
+    ref().
+    child(FC).
+    child(SC).
+    once("value").then(function (snap) {
+
+        let offset = snap.val();
+        
+        countryList.push(offset); 
+        countryList[countryList.length - 1].firstCountry = FC;
+        countryList[countryList.length - 1].secondCountry = SC;
+
+        let temp = {
+            info: " ",
+            rating: 0,
+            year: 0
+        }
+        temp.info = CI;
+        temp.rating = CR;
+        temp.year = CY
+        countryList[countryList.length - 1]["Cultural Information"].push(temp);
+
+        temp.info = EI;
+        temp.rating = ER;
+        temp.year = EY;
+        countryList[countryList.length - 1]["Economic Information"].push(temp)
+
+        temp.info = PI;
+        temp.info = PR;
+        temp.year = PY;
+        countryList[countryList.length - 1]["Political Information"].push(temp);
+
+        pushData(countryList[countryList.length - 1].firstCountry,
+            countryList[countryList.length - 1].secondCountry,
+            countryList[countryList.length - 1]["Cultural Information"],
+            countryList[countryList.length - 1]["Economic Information"],
+            countryList[countryList.length - 1]["Political Information"]);
+
+
+        
+    });
+}
+
+function showCustomForm(){
+    let bg, cf;
+
+    bg = document.getElementById('backgroundContact');
+    bg.style.display = "block";
+
+    cf = document.getElementById('customContact');
+    cf.style.display = "block";
+
+
 }
 
 function errData(err) {
