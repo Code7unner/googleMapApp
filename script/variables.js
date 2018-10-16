@@ -401,9 +401,8 @@ const countryArrayRUS = [
   "Замбия",
   "Зимбабве"
 ];
-var firstCoutrySelect = document.getElementById("firstCountrySelector").options;
-var secondCoutrySelect = document.getElementById("secondCountrySelector")
-  .options;
+var firstCoutrySelect = document.getElementById("CFCI").options;
+var secondCoutrySelect = document.getElementById("CSCI").options;
 
 countryArrayENG.forEach(option =>
   firstCoutrySelect.add(new Option(option, option))

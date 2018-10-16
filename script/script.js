@@ -214,6 +214,8 @@ function createLine() {
             strokeWeight: evalWeight()
           };
 
+            createChart();
+
           polyline = new google.maps.Polyline(polylineOptions);
           polylines.push(polyline);
 

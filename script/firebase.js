@@ -120,11 +120,13 @@ function takeInfo() {
     countryList[countryList.length - 1]["Political Information"]
   );
 
-  let innerText = document.getElementById("outputInfo").value;
+  createChart();
 
-  innerText += countryList[countryList.length - 1]["Cultural Information"];
-  innerText += countryList[countryList.length - 1]["Economic Information"];
-  innerText += countryList[countryList.length - 1]["Political Information"];
+  var innerText = document.getElementById("outputInfo").value;
+
+  for (let i = 0; i < countryList[countryList.length - 1]; i++) {
+    innerText += countryList[countryList.length - 1][i] + " ";
+  }
 
   noFill = false;
   CI = "";
@@ -196,6 +198,8 @@ function takeCustomInfo() {
         countryList[countryList.length - 1]["Economic Information"],
         countryList[countryList.length - 1]["Political Information"]
       );
+
+      createChart();
     });
 }
 
