@@ -2,24 +2,24 @@ function createChart() {
   let cInfo = ["Cultural"];
   let eInfo = ["Economic"];
   let pInfo = ["Political"];
-  let a = countryList[countryList.length - 1];
+  let counry = countryList[countryList.length - 1];
 
-  if (a["IsFill"]) {
-    if (a["Cultural Information"].length > 1) {
-      for (let i = 1; i < a["Cultural Information"].length; i++) {
-        cInfo.push(a["Cultural Information"][i].rating);
+  if (counry["IsFill"]) {
+    if (counry["Cultural Information"].length > 1) {
+      for (let i = 1; i < counry["Cultural Information"].length; i++) {
+        cInfo.push(counry["Cultural Information"][i].rating);
       }
     }
 
-    if (a["Economic Information"].length > 1) {
-      for (let i = 1; i < a["Economic Information"].length; i++) {
-        eInfo.push(a["Economic Information"][i].rating);
+    if (counry["Economic Information"].length > 1) {
+      for (let i = 1; i < counry["Economic Information"].length; i++) {
+        eInfo.push(counry["Economic Information"][i].rating);
       }
     }
 
-    if (a["Political Information"].length > 1) {
-      for (let i = 1; i < a["Political Information"].length; i++) {
-        pInfo.push(a["Political Information"][i].rating);
+    if (counry["Political Information"].length > 1) {
+      for (let i = 1; i < counry["Political Information"].length; i++) {
+        pInfo.push(counry["Political Information"][i].rating);
       }
     }
   }

@@ -214,7 +214,7 @@ function createLine() {
             strokeWeight: evalWeight()
           };
 
-            createChart();
+          createChart();
 
           polyline = new google.maps.Polyline(polylineOptions);
           polylines.push(polyline);
@@ -318,46 +318,12 @@ function setZoom() {
 function aboutArrow(event) {
   infoWindow = new google.maps.InfoWindow();
 
-  // let lat = event.latLng.lat();
-  // let lng = event.latLng.lng();
-  //
-  // let tempArr = findLine(lat, lng);
-
   let j = 0;
 
   let contentString = "<b>Your way</b><br>";
 
-  // for (let i = 0; i < tempArr.length; i++) {
-  //     contentString+= '<br>' + 'Coordinate ' + j + ':<br>' +
-  //         tempArr[i].Address;
-  //     j++;
-  // }
-
-  // for (let i = coords[coords.length - 1].length; i > 0; i--) {
-  //     contentString += '<br>' + 'Coordinate ' + j + ':<br>' +
-  //         coords[coords.length - 1][coords[coords.length - 1].length - i].Address;
-  //     j++;
-  // }
-
-  // contentString+= '<br><br>' + '<b>Way length: </b>' +
-  //     allLengthInMeters + ' meters' + '<br>' + '<b>Dry cargo: </b>' +
-  //     coords[coords.length - 1][coords[coords.length - 1].length - 1].DryCargo;
-
-  // if (amountInput === '0') {
-  //     contentString+= ' (input dry cargo)';
-  // } else if ($('.cargoValueOfKg').prop("checked")) {
-  //     contentString+= ' kg';
-  // } else if ($('.cargoValueOfTon').prop("checked")) {
-  //     contentString+= ' ton';
-  // }
-
   infoWindow.setContent(contentString);
   infoWindow.setPosition(event.latLng);
-
-  // google.maps.event.addListener(infoWindow, 'domready', function(){
-  //     $(".gm-style-iw").next("div").hide();
-  // });
-
   infoWindow.open(map);
 }
 

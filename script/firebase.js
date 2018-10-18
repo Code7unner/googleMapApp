@@ -76,7 +76,7 @@ function getData(fc, sc) {
 }
 
 function takeInfo() {
-  let CI, CR, EI, ER, PI, PR;
+  let CI, CR, CY, EI, ER, EY, PI, PR, PY;
 
   CI = document.getElementById("CII").value;
   CR = document.getElementById("CRI").value;
@@ -91,26 +91,27 @@ function takeInfo() {
   let backGround = document.getElementById("backgroundContact");
   backGround.style.display = "None";
 
-  let temp = {
-    info: " ",
-    rating: 0,
-    year: 0
+  let cultInfo = {
+    info: CI,
+    rating: CR,
+    year: CY
   };
 
-  temp.info = CI;
-  temp.rating = CR;
-  temp.year = CY;
-  countryList[countryList.length - 1]["Cultural Information"].push(temp);
+  let ecoInfo = {
+    info: EI,
+    rating: ER,
+    year: EY
+  };
 
-  temp.info = EI;
-  temp.rating = ER;
-  temp.year = EY;
-  countryList[countryList.length - 1]["Economic Information"].push(temp);
+  let politInfo = {
+    info: PI,
+    rating: PR,
+    year: PY
+  };
 
-  temp.info = PI;
-  temp.info = PR;
-  temp.year = PY;
-  countryList[countryList.length - 1]["Political Information"].push(temp);
+  countryList[countryList.length - 1]["Cultural Information"].push(cultInfo);
+  countryList[countryList.length - 1]["Economic Information"].push(ecoInfo);
+  countryList[countryList.length - 1]["Political Information"].push(politInfo);
 
   pushData(
     countryList[countryList.length - 1].firstCountry,
@@ -122,12 +123,6 @@ function takeInfo() {
 
   createChart();
 
-  var innerText = document.getElementById("outputInfo").value;
-
-  for (let i = 0; i < countryList[countryList.length - 1]; i++) {
-    innerText += countryList[countryList.length - 1][i] + " ";
-  }
-
   noFill = false;
   CI = "";
   EI = "";
@@ -138,7 +133,7 @@ function takeInfo() {
 }
 
 function takeCustomInfo() {
-  let CI, CR, EI, ER, PI, PR, FC, SC, bg, cf;
+  let CI, CR, CY, EI, ER, EY, PI, PR, PY, FC, SC, bg, cf;
 
   bg = document.getElementById("backgroundContact");
   cf = document.getElementById("customContact");
@@ -171,25 +166,35 @@ function takeCustomInfo() {
       countryList[countryList.length - 1].firstCountry = FC;
       countryList[countryList.length - 1].secondCountry = SC;
 
-      let temp = {
-        info: " ",
-        rating: 0,
-        year: 0
+      let cultInfo = {
+        info: CI,
+        rating: CR,
+        year: CY
       };
-      temp.info = CI;
-      temp.rating = CR;
-      temp.year = CY;
-      countryList[countryList.length - 1]["Cultural Information"].push(temp);
 
-      temp.info = EI;
-      temp.rating = ER;
-      temp.year = EY;
-      countryList[countryList.length - 1]["Economic Information"].push(temp);
+      let ecoInfo = {
+        info: EI,
+        rating: ER,
+        year: EY
+      };
 
-      temp.info = PI;
-      temp.info = PR;
-      temp.year = PY;
-      countryList[countryList.length - 1]["Political Information"].push(temp);
+      let politInfo = {
+        info: PI,
+        rating: PR,
+        year: PY
+      };
+
+      countryList[countryList.length - 1]["Cultural Information"].push(
+        cultInfo
+      );
+
+      countryList[countryList.length - 1]["Economic Information"].push(
+          ecoInfo
+      );
+
+      countryList[countryList.length - 1]["Political Information"].push(
+        politInfo
+      );
 
       pushData(
         countryList[countryList.length - 1].firstCountry,
