@@ -68,7 +68,7 @@ function getData(fc, sc) {
           let inputForm = document.getElementById("contact");
           let backGround = document.getElementById("backgroundContact");
           backGround.style.display = "block";
-          backGround.style.display = "block";
+          inputForm.style.display = "block";
           noFill = true;
         }
       }

@@ -205,6 +205,7 @@ button {
     margin-left: 40%;
     opacity: 1;
     display: none;
+    z-index: 51;
 }
 
 #customContact{
@@ -212,6 +213,7 @@ button {
     margin-left: 40%;
     opacity: 1;
     display: none;
+    z-index: 51;
 }
 
 #backgroundContact {
@@ -221,6 +223,7 @@ button {
     margin: 0;
     padding: 0;
     display: none;
+    z-index: 50;
     background-color: rgba(45,51,45, 0.8);
 }
 
@@ -265,8 +268,10 @@ button {
 #chart{
     width: 100%;
     background-color: #2ABCA7;
-    padding: 5px;
+    margin-right: 5px;
     margin-left: 15px;
+    display: none;
+    z-index: 49;
 }
 
 select {
