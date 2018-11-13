@@ -190,14 +190,35 @@ function createLine() {
         //Get firstCountry: secondCountry
         getData(fc, sc).then(function() {
           if (!noFill) {
-            let innerText = document.getElementById("outputInfo").value;
+            let innerText = document.getElementById("outputInfo");
+            innerText.style.display = "block"
+            innerText.value = "Information about " + fc + " and " + sc + '\n\n';
+            
+            innerText.value += "          Cultural Inforamtion" + '\n\n';
+            for (let i = 1; i < countryList[countryList.length - 1]["Cultural Information"].length - 1; i++ ){
+              innerText.value += "Year: "   + countryList[countryList.length - 1]["Cultural Information"][i].year   + '\n' +
+                                 "Rating: " + countryList[countryList.length - 1]["Cultural Information"][i].rating + '\n' +
+                                 "Info: "   + countryList[countryList.length - 1]["Cultural Information"][i].info   + '\n\n';  
+            }
+            innerText.value += "_______________________\n\n\n" + "          Economic Inforamtion" + '\n\n'; 
 
-            innerText +=
-              countryList[countryList.length - 1]["Cultural Information"];
-            innerText +=
-              countryList[countryList.length - 1]["Economic Information"];
-            innerText +=
-              countryList[countryList.length - 1]["Political Information"];
+
+            for (let i = 1; i < countryList[countryList.length - 1]["Economic Information"].length - 1; i++ ){
+              innerText.value += "Year: "   + countryList[countryList.length - 1]["Economic Information"][i].year   + '\n' +
+                                 "Rating: " + countryList[countryList.length - 1]["Economic Information"][i].rating + '\n' +
+                                 "Info: "   + countryList[countryList.length - 1]["Economic Information"][i].info   + '\n\n';
+            } 
+            
+            innerText.value += "_______________________\n\n\n" + "          Political Inforamtion" + '\n\n'; 
+
+            for (let i = 1; i < countryList[countryList.length - 1]["Political Information"].length - 1; i++ ){
+              innerText.value += "Year: "   + countryList[countryList.length - 1]["Political Information"][i].year   + '\n' +
+                                 "Rating: " + countryList[countryList.length - 1]["Political Information"][i].rating + '\n' +
+                                 "Info: "   + countryList[countryList.length - 1]["Political Information"][i].info   + '\n\n';
+            }
+          } else {
+            let innerText = document.getElementById("outputInfo");
+            innerText.style.display = "none"  
           }
 
           polylineOptions = {

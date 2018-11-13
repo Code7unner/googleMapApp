@@ -246,7 +246,7 @@ button {
     border: 1px solid #2ABCA7;
     -webkit-transition: .5s;
     transition: .5s;
-    display: inline-block;
+    display: none;
     cursor: pointer;
     width:80%;
     color:#fff;
