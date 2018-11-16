@@ -78,6 +78,7 @@ function translateToEng(c) {
     if (c == countryArrayRUS[i]) {
       return countryArrayENG[i];
     }
+    return(c)
   }
 }
 
