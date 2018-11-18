@@ -50,8 +50,6 @@ function startApp() {
     myColor = random(0, 4);
     allLengthInMeters = 0;
   });
-
-  $();
 }
 
 function initMap() {
@@ -78,8 +76,8 @@ function translateToEng(c) {
     if (c == countryArrayRUS[i]) {
       return countryArrayENG[i];
     }
-    return(c)
   }
+  return c;
 }
 
 function evalWeight() {

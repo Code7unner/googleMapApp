@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 <head>
     <title>Map</title>
@@ -31,21 +31,42 @@
             <form id="contact">
               <div class="container">
                 <div class="head">
-                  <h2>Input information</h2>
-                </div>                
-                  <input class="contactInput" id="CII" type="text" name="CI" placeholder="Cultural Information" /><br />
-                  <input class="contactInput intInput" id="CRI" type="number" name="CR" value="1" min="1" max="5" placeholder="Cultural Rating" />
-                  <input class="contactInput intInput" id="CYI" type="number" name="CY" value="0" placeholder="Year" /><br />
-                  <input class="contactInput" id="EII" type="text" name="EI" placeholder="Economic Information" /><br />
-                  <input class="contactInput intInput" id="ERI" type="number" name="ER" value="1" min="1" max="5" placeholder="Economic Rating">
-                  <input class="contactInput intInput" id="EYI" type="number" name="EY" value="0" placeholder="Year" /><br />
-                  <input class="contactInput" id="PII" type="text" name="PI" placeholder="Political Information" /><br />
-                  <input class="contactInput intInput" id="PRI" type="number" name="PR" value="1" min="1" max="5" placeholder="Political Rating">
-                  <input class="contactInput intInput" id="PYI" type="number" name="PY" value="0" placeholder="Year" />
-                  <div class="message">Message Sent</div>
-                    <button id="submit" type="button" onclick="takeInfo()">
-                  Send!
-                </button>
+                    <h2>Input information</h2>
+               
+                    <input class="contactInput" id="cinfo" type="text" name="CI" placeholder="Countries Information" /><br />
+
+                    <div class="select">
+                      <h2>Year</h2>
+                      <select class="select saveselect" id="YI" name="CM"></select>
+                    </div>
+
+                    <h2>Month</h2>
+                    <div class="select">
+                      <select class="select saveselect" id="MI" name="CY"></select>
+                    </div>
+                    
+
+                    <h2>Cultural rating</h2>
+                    <div class="select">
+                      <select class="select saveselect" id="CRI" name="CR"></select>
+                    </div>
+
+
+                    <h2>Economic rating</h2>
+                    <div class="select">
+                      <select class="select saveselect" id="ERI" name="ER"></select>
+                    </div>
+
+                    <h2>Political rating</h2>
+                    <div class="select">
+                      <select class="select saveselect" id="PRI" name="PR"></select>
+                    </div>
+
+                    <div class="message">Message Sent</div>
+                      <button id="submitCustom" type="button" onclick="takeInfo()">
+                    Send!
+                  </button>
+                </div>
               </div>
             </form>
             <form id="customContact">
@@ -59,15 +80,36 @@
                     <div class="select">
                         <select name="ccountryList" id="CSCI" class="select saveselect"></select><br/>
                     </div> 
-                    <input class="contactInput" id="CCII" type="text" name="CI" placeholder="Cultural Information" /><br />
-                    <input class="contactInput intInput" id="CCRI" type="number" name="CR" value="1" min="1" max="5" placeholder="Cultural Rating" />
-                    <input class="contactInput intInput" id="CCYI" type="number" name="CY" value="0" placeholder="Year" /><br />
-                    <input class="contactInput" id="CEII" type="text" name="EI" placeholder="Economic Information" /><br />
-                    <input class="contactInput intInput" id="CERI" type="number" name="ER" value="1" min="1" max="5" placeholder="Economic Rating">
-                    <input class="contactInput intInput" id="CEYI" type="number" name="EY" value="0" placeholder="Year" /><br />
-                    <input class="contactInput" id="CPII" type="text" name="PI" placeholder="Political Information" /><br />
-                    <input class="contactInput intInput" id="CPRI" type="number" name="PR" value="1" min="1" max="5" placeholder="Political Rating">
-                    <input class="contactInput intInput" id="CPYI" type="number" name="PY" value="0" placeholder="Year" />
+
+                    <input class="contactInput" id="cinfo" type="text" name="CI" placeholder="Countries Information" /><br />
+
+                    <h2>Year</h2>
+                    <div class="select">
+                      <select class="select saveselect" id="CYI" name="CYI"></select>
+                    </div>
+
+                    <h2>Month</h2>
+                    <div class="select">
+                      <select class="select saveselect" id="CMI" name="CMI"></select>
+                    </div>
+                    
+
+                    <h2>Cultural rating</h2>
+                    <div class="select">
+                      <select class="select saveselect" id="CCRI" name="CCRI"></select>
+                    </div>
+
+
+                    <h2>Economic rating</h2>
+                    <div class="select">
+                      <select class="select saveselect" id="CERI" name="CERI"></select>
+                    </div>
+
+                    <h2>Political rating</h2>
+                    <div class="select">
+                      <select class="select saveselect" id="CPRI" name="CPRI"></select>
+                    </div>
+
                     <div class="message">Message Sent</div>
                       <button id="submitCustom" type="button" onclick="takeCustomInfo()">
                     Send!

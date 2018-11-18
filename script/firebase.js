@@ -1,24 +1,15 @@
 let database;
 let ref;
 
-function pushData(fc, sc, CI, EI, PI) {
+function pushData(fc, sc, info) {
   let fb = firebase.database();
 
   fb.ref()
     .child(fc)
     .child(sc)
-    .child("Cultural Information")
-    .set(CI);
-  fb.ref()
-    .child(fc)
-    .child(sc)
-    .child("Economic Information")
-    .set(EI);
-  fb.ref()
-    .child(fc)
-    .child(sc)
-    .child("Political Information")
-    .set(PI);
+    .child("events")
+    .set(info);
+  
   fb.ref()
     .child(fc)
     .child(sc)
@@ -28,18 +19,9 @@ function pushData(fc, sc, CI, EI, PI) {
   fb.ref()
     .child(sc)
     .child(fc)
-    .child("Cultural Information")
-    .set(CI);
-  fb.ref()
-    .child(sc)
-    .child(fc)
-    .child("Economic Information")
-    .set(EI);
-  fb.ref()
-    .child(sc)
-    .child(fc)
-    .child("Political Information")
-    .set(PI);
+    .child("events")
+    .set(info);
+  
   fb.ref()
     .child(sc)
     .child(fc)
@@ -91,34 +73,20 @@ function takeInfo() {
   let backGround = document.getElementById("backgroundContact");
   backGround.style.display = "None";
 
-  let cultInfo = {
+  let info = {
     info: CI,
-    rating: CR,
-    year: CY
+    politicalRating: PR,
+    culturalRating: CR,
+    economicRating: ER,
+    date: { CM, CY }
   };
-
-  let ecoInfo = {
-    info: EI,
-    rating: ER,
-    year: EY
-  };
-
-  let politInfo = {
-    info: PI,
-    rating: PR,
-    year: PY
-  };
-
-  countryList[countryList.length - 1]["Cultural Information"].push(cultInfo);
-  countryList[countryList.length - 1]["Economic Information"].push(ecoInfo);
-  countryList[countryList.length - 1]["Political Information"].push(politInfo);
+  
+  countryList[countryList.length - 1]["events"].push(info);
 
   pushData(
     countryList[countryList.length - 1].firstCountry,
     countryList[countryList.length - 1].secondCountry,
-    countryList[countryList.length - 1]["Cultural Information"],
-    countryList[countryList.length - 1]["Economic Information"],
-    countryList[countryList.length - 1]["Political Information"]
+    countryList[countryList.length - 1]["events"]
   );
 
   createChart();
@@ -166,42 +134,20 @@ function takeCustomInfo() {
       countryList[countryList.length - 1].firstCountry = FC;
       countryList[countryList.length - 1].secondCountry = SC;
 
-      let cultInfo = {
-        info: CI,
-        rating: CR,
-        year: CY
-      };
+        let info = {
+          info: CI,
+          politicalRating: PR,
+          culturalRating: CR,
+          economicRating: ER,
+          date: { CM, CY }
+        };
 
-      let ecoInfo = {
-        info: EI,
-        rating: ER,
-        year: EY
-      };
-
-      let politInfo = {
-        info: PI,
-        rating: PR,
-        year: PY
-      };
-
-      countryList[countryList.length - 1]["Cultural Information"].push(
-        cultInfo
-      );
-
-      countryList[countryList.length - 1]["Economic Information"].push(
-          ecoInfo
-      );
-
-      countryList[countryList.length - 1]["Political Information"].push(
-        politInfo
-      );
+      countryList[countryList.length - 1]["events"].push(info);
 
       pushData(
         countryList[countryList.length - 1].firstCountry,
         countryList[countryList.length - 1].secondCountry,
-        countryList[countryList.length - 1]["Cultural Information"],
-        countryList[countryList.length - 1]["Economic Information"],
-        countryList[countryList.length - 1]["Political Information"]
+        countryList[countryList.length - 1]["events"]
       );
 
       createChart();
