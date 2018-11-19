@@ -1,6 +1,3 @@
-let database;
-let ref;
-
 function pushData(fc, sc, info) {
   let fb = firebase.database();
 
@@ -58,17 +55,14 @@ function getData(fc, sc) {
 }
 
 function takeInfo() {
-  let CI, CR, CY, EI, ER, EY, PI, PR, PY;
+  let CI, CR, CY, ER, PR, CM;
 
   CI = document.getElementById("CII").value;
-  CR = document.getElementById("CRI").value;
-  CY = document.getElementById("CYI").value;
-  EI = document.getElementById("EII").value;
+  CY = document.getElementById("CY").value;
   ER = document.getElementById("ERI").value;
-  EY = document.getElementById("EYI").value;
-  PI = document.getElementById("PII").value;
+  CM = document.getElementById("CM").value;
+  CR = document.getElementById("CRI").value;
   PR = document.getElementById("PRI").value;
-  PY = document.getElementById("PYI").value;
 
   let backGround = document.getElementById("backgroundContact");
   backGround.style.display = "None";
@@ -93,15 +87,15 @@ function takeInfo() {
 
   noFill = false;
   CI = "";
-  EI = "";
-  PI = "";
-  CR = 1;
-  ER = 1;
-  PR = 1;
+  CM = "";
+  CY = "";
+  CR = 0;
+  ER = 0;
+  PR = 0;
 }
 
 function takeCustomInfo() {
-  let CI, CR, CY, EI, ER, EY, PI, PR, PY, FC, SC, bg, cf;
+  let CI, CR, CY, ER, PR, FC, SC, CM, bg, cf;
 
   bg = document.getElementById("backgroundContact");
   cf = document.getElementById("customContact");
@@ -110,13 +104,10 @@ function takeCustomInfo() {
   SC = document.getElementById("CSCI").value;
   CI = document.getElementById("CCII").value;
   CR = document.getElementById("CCRI").value;
-  CY = document.getElementById("CCYI").value;
-  EI = document.getElementById("CEII").value;
+  CY = document.getElementById("CCY").value;
+  CM = document.getElementById("CCM").value;
   ER = document.getElementById("CERI").value;
-  EY = document.getElementById("CEYI").value;
-  PI = document.getElementById("CPII").value;
   PR = document.getElementById("CPRI").value;
-  PY = document.getElementById("CPYI").value;
 
   bg.style.display = "none";
   cf.style.display = "none";
@@ -151,6 +142,14 @@ function takeCustomInfo() {
       );
 
       createChart();
+
+      noFill = false;
+      CI = "";
+      CY = "";
+      CM = "";
+      CR = 0;
+      ER = 0;
+      PR = 0;
     });
 }
 

@@ -190,7 +190,7 @@ function createLine() {
         getData(fc, sc).then(function() {
           if (!noFill) {
             let innerText = document.getElementById("outputInfo");
-            innerText.style.display = "block"
+            innerText.style.display = "block";
             innerText.value = "Information about " + fc + " and " + sc + '\n\n';
             
             innerText.value += "          Cultural Inforamtion" + '\n\n';
