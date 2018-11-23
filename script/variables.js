@@ -150,7 +150,7 @@ const countryArrayENG = [
   "Portugal",
   "Qatar",
   "Romania",
-  "Russian Federation",
+  "Russia",
   "Rwanda",
   "St Kitts & Nevis",
   "St Lucia",
