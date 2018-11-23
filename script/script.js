@@ -85,24 +85,12 @@ function evalWeight() {
   let value = 0;
   let count = 0;
   if (a["IsFill"]) {
-    if (a["Cultural Information"].length > 1) {
-      for (let i = 1; i < a["Cultural Information"].length; i++) {
-        value += +a["Cultural Information"][i].rating;
-        count++;
-      }
-    }
-
-    if (a["Economic Information"].length > 1) {
-      for (let i = 1; i < a["Economic Information"].length; i++) {
-        value += +a["Economic Information"][i].rating;
-        count++;
-      }
-    }
-
-    if (a["Political Information"].length > 1) {
-      for (let i = 1; i < a["Political Information"].length; i++) {
-        value += +a["Political Information"][i].rating;
-        count++;
+    if (a["events"].length > 1) {
+      for (let i = 1; i < a["events"].length; i++) {
+        value += +a["events"][i].culturalRating;
+        value += +a["events"][i].economicRating;
+        value += +a["events"][i].politicalRating;
+        count += 3;
       }
     }
     return value / count;
@@ -114,24 +102,12 @@ function evalColor() {
   let value = 0;
   let count = 0;
   if (a["IsFill"]) {
-    if (a["Cultural Information"].length > 1) {
-      for (let i = 1; i < a["Cultural Information"].length; i++) {
-        value += +a["Cultural Information"][i].rating;
-        count++;
-      }
-    }
-
-    if (a["Economic Information"].length > 1) {
-      for (let i = 1; i < a["Economic Information"].length; i++) {
-        value += +a["Economic Information"][i].rating;
-        count++;
-      }
-    }
-
-    if (a["Political Information"].length > 1) {
-      for (let i = 1; i < a["Political Information"].length; i++) {
-        value += +a["Political Information"][i].rating;
-        count++;
+    if (a["events"].length > 1) {
+      for (let i = 1; i < a["events"].length; i++) {
+        value += +a["events"][i].culturalRating;
+        value += +a["events"][i].economicRating;
+        value += +a["events"][i].politicalRating;
+        count += 3;
       }
     }
 
@@ -194,31 +170,15 @@ function createLine() {
             innerText.value = "Information about " + fc + " and " + sc + '\n\n';
             
             innerText.value += "          Countries Inforamtion" + '\n\n';
-            for (let i = 1; i < countryList[countryList.length - 1]["events"].length - 1; i++ ){
-              innerText.value += "Cultural rating: "   + countryList[countryList.length - 1]["events"][i].culturalRating  + '\n' +
-                                 "Date: " + countryList[countryList.length - 1]["events"].date.CM + '.' +
-                                            countryList[countryList.length - 1]["events"].date.CY +'\n' +
+            for (let i = 1; i < countryList[countryList.length - 1]["events"].length; i++ ){
+              innerText.value += "Date: " + countryList[countryList.length - 1]["events"][i].date.CM + '.' +
+                                         countryList[countryList.length - 1]["events"][i].date.CY +'\n' +
+                                 "Cultural rating: "   + countryList[countryList.length - 1]["events"][i].culturalRating  + '\n' +                                 
                                  "Economic rating: "   + countryList[countryList.length - 1]["events"][i].economicRating   + '\n' +
-                                 "Info: " + countryList[countryList.length - 1]["events"][i].info + '\n' +
-                                 "Political rating: " + countryList[countryList.length - 1]["events"][i].politicalRating + '\n\n';
+                                 
+                                 "Political rating: " + countryList[countryList.length - 1]["events"][i].politicalRating + '\n' +
+                                 "Info: " + countryList[countryList.length - 1]["events"][i].info + '\n\n';
             }
-            //TODO
-            // innerText.value += "_______________________\n\n\n" + "          Economic Inforamtion" + '\n\n';
-            //
-            //
-            // for (let i = 1; i < countryList[countryList.length - 1]["Economic Information"].length - 1; i++ ){
-            //   innerText.value += "Year: "   + countryList[countryList.length - 1]["Economic Information"][i].year   + '\n' +
-            //                      "Rating: " + countryList[countryList.length - 1]["Economic Information"][i].rating + '\n' +
-            //                      "Info: "   + countryList[countryList.length - 1]["Economic Information"][i].info   + '\n\n';
-            // }
-            //
-            // innerText.value += "_______________________\n\n\n" + "          Political Inforamtion" + '\n\n';
-            //
-            // for (let i = 1; i < countryList[countryList.length - 1]["Political Information"].length - 1; i++ ){
-            //   innerText.value += "Year: "   + countryList[countryList.length - 1]["Political Information"][i].year   + '\n' +
-            //                      "Rating: " + countryList[countryList.length - 1]["Political Information"][i].rating + '\n' +
-            //                      "Info: "   + countryList[countryList.length - 1]["Political Information"][i].info   + '\n\n';
-            // }
           } else {
             let innerText = document.getElementById("outputInfo");
             innerText.style.display = "none";

@@ -3,9 +3,11 @@ function createChart() {
   let cInfo = ["Cultural"];
   let eInfo = ["Economic"];
   let pInfo = ["Political"];
-  let dates = ["x", "01.17", "02.17", "03.17", "04.17", "05.17", "06.17", "07.17", "08.17", "09.17", "10.17", "11.17", "12.17",
-                    "01.18", "02.18", "03.18", "04.18", "05.18", "06.18", "07.18", "08.18", "09.18", "10.18", "11.18", "12.18",
-                    "01.19", "02.19", "03.19", "04.19", "05.19", "06.19", "07.19", "08.19", "09.19", "10.19", "11.19", "12.19"]
+  let dates = ['x', '2017-01-01', '2017-02-02', '2017-03-03', '2017-04-04', '2017-05-05', '2017-06-06', '2017-07-07', '2017-08-08', '2017-09-09', '2017-10-10', '2017-11-11', '2017-12-12',
+                    '2018-01-01', '2018-02-02', '2018-03-03', '2018-04-04', '2018-05-05', '2018-06-06', '2018-07-07', '2018-08-08', '2018-09-09', '2018-10-10', '2018-11-11', '2018-12-12',
+                    '2019-01-01', '2019-02-02', '2019-03-03', '2019-04-04', '2019-05-05', '2019-06-06', '2019-07-07', '2019-08-08', '2019-09-09', '2019-10-10', '2019-11-11', '2019-12-12']
+
+                  
   let country = countryList[countryList.length - 1];
   let cScore = 0;
   let eScore = 0;
@@ -13,22 +15,23 @@ function createChart() {
 
 
   if (country["IsFill"]) {
-    for (let i = 0; i < 35; i++){
+    for (let i = 0; i < 36; i++){
         if (eScore > 0) eScore--; else if (eScore < 0) eScore++; 
         if (pScore > 0) pScore--; else if (pScore < 0) pScore++;
         if (cScore > 0) cScore--; else if (cScore < 0) cScore++;
 
-        for (let j = 1; j < country.length; j++){
-          if((+country[j].date[1] % 2017) * 12 + 
-              +country[j].date[0] - 1 == i)
-                cScore += +country[j].culturalRating;
-                pScore += +country[j].politicalRating;
-                eScore += +country[j].economicRating;
+        for (let j = 1; j < country["events"].length; j++){
+          if((+country["events"][j].date.CY % 2017) * 12 + 
+              +country["events"][j].date.CM - 1 == i){
+                cScore += +country["events"][j].culturalRating;
+                pScore += +country["events"][j].politicalRating;
+                eScore += +country["events"][j].economicRating;       
+              }         
         }
-
         cInfo.push(cScore);
         pInfo.push(pScore);
         eInfo.push(eScore);
+        
     }
   }
   chartPlace.style.display = "block";
@@ -38,6 +41,14 @@ function createChart() {
     data: {
       x: 'x',
       columns: [dates, cInfo, eInfo, pInfo]
-    }
+    },
+    axis: {
+      x: {
+          type: 'timeseries',
+          tick: {
+              format: '%m.%Y'
+          }
+      }
+  }
   });
 }
