@@ -300,17 +300,17 @@ select {
     margin-left: 5px;
     margin-bottom: 5px;
   }
-  select {
+select {
     height: 100%;
     margin: 0;
     color: #fff;
     cursor: pointer;
-  }
-  select::-ms-expand {
+}
+select::-ms-expand {
     display: none;
-  }
-  /* Arrow */
-  .select::after {
+}
+/* Arrow */
+.select::after {
     content: '\25BC';
     position: absolute;
     top: 0;
@@ -319,22 +319,28 @@ select {
     padding: 0 1em;
     background: #2ABCA7;
     pointer-events: none;
-  }
-  /* Transition */
-  .select:hover::after {
+}
+/* Transition */
+.select:hover::after {
     color: #f39c12;
-  }
-  .select::after {
+}
+
+.select::after {
     -webkit-transition: .25s all ease;
     -o-transition: .25s all ease;
     transition: .25s all ease;
-  }
+}
 
-  .saveselect{
+.saveselect{
     margin: 0;
-  }
+}
 
-  p {
+p {
     text-align: left;
     padding-left: 5px;
-  }
+}
+
+#submit {
+    background-color:#FAFAFA;
+    color:#2ABCA7;
+}

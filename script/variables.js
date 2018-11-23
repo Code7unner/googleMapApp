@@ -433,15 +433,15 @@ var secondCoutrySelect = document.getElementById("CSCI").options;
 var culturalCustomRatingSelect = document.getElementById("CCRI").options;
 var economicCustomRatingSelect = document.getElementById("CERI").options;
 var politicalCustomRatingSelect = document.getElementById("CPRI").options;
-var yearCustomSelect = document.getElementById("CYI").options;
-var monthCustomSelect = document.getElementById("CMI").options;
+var yearCustomSelect = document.getElementById("CCY").options;
+var monthCustomSelect = document.getElementById("CCM").options;
 
 
 var culturalRatingSelect = document.getElementById("CRI").options;
 var economicRatingSelect = document.getElementById("ERI").options;
 var politicalRatingSelect = document.getElementById("PRI").options;
-var yearSelect = document.getElementById("YI").options;
-var monthSelect = document.getElementById("MI").options;
+var yearSelect = document.getElementById("CY").options;
+var monthSelect = document.getElementById("CM").options;
 
 countryArrayENG.forEach(option =>
   firstCoutrySelect.add(new Option(option, option))
@@ -468,7 +468,7 @@ years.forEach(option => {
 month.forEach(option => {
   monthSelect.add(new Option(option, option));
   monthCustomSelect.add(new Option(option, option));
-})
+});
 
 
 
@@ -482,7 +482,6 @@ var polyline;
 var polylineOptions;
 var route;
 var lengthInMeters;
-var amountInput;
 
 var allLengthInMeters = 0;
 
@@ -500,7 +499,6 @@ var jsonPolyline;
 const myOffset = "100%";
 const myColors = ["red", "yellow", "green", "black"]; //red, blue, green, yellow, black
 const myOpacity = 1;
-const myWeight = 4;
 
 //DB
 var firstCountry;

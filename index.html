@@ -27,45 +27,47 @@
 <body>
     <div id="map"></div>
     <div>
-        <dir id="backgroundContact">
+        <div id="backgroundContact">
             <form id="contact">
               <div class="container">
                 <div class="head">
-                    <h2>Input information</h2>
-               
-                    <input class="contactInput" id="CII" type="text" name="CI" placeholder="Countries Information" /><br />
+                    <div>
+                        <h2>Input information</h2>
 
-                    <div class="select">
-                      <h2>Year</h2>
-                      <select class="select saveselect" id="CY" name="CM"></select>
+                        <input class="contactInput" id="CII" type="text" name="CI" placeholder="Countries Information" /><br />
+
+                        <p>Year</p>
+                        <div class="select">
+                          <select class="select saveselect" id="CY" name="CM"></select>
+                        </div>
+
+                        <p>Month</p>
+                        <div class="select">
+                          <select class="select saveselect" id="CM" name="CY"></select>
+                        </div>
+
+
+                        <p>Cultural rating</p>
+                        <div class="select">
+                          <select class="select saveselect" id="CRI" name="CR"></select>
+                        </div>
+
+
+                        <p>Economic rating</p>
+                        <div class="select">
+                          <select class="select saveselect" id="ERI" name="ER"></select>
+                        </div>
+
+                        <p>Political rating</p>
+                        <div class="select">
+                          <select class="select saveselect" id="PRI" name="PR"></select>
+                        </div>
+
+                        <div class="message">Message Sent</div>
+                          <button id="submit" type="button" onclick="takeInfo()">
+                        Send!
+                      </button>
                     </div>
-
-                    <p>Month</p>
-                    <div class="select">
-                      <select class="select saveselect" id="CM" name="CY"></select>
-                    </div>
-                    
-
-                    <p>Cultural rating</p>
-                    <div class="select">
-                      <select class="select saveselect" id="CRI" name="CR"></select>
-                    </div>
-
-
-                    <p>Economic rating</p>
-                    <div class="select">
-                      <select class="select saveselect" id="ERI" name="ER"></select>
-                    </div>
-
-                    <p>Political rating</p>
-                    <div class="select">
-                      <select class="select saveselect" id="PRI" name="PR"></select>
-                    </div>
-
-                    <div class="message">Message Sent</div>
-                      <button id="submit" type="button" onclick="takeInfo()">
-                    Send!
-                  </button>
                 </div>
               </div>
             </form>
@@ -116,7 +118,7 @@
                   </button>
                 </div>
               </form>
-        </dir>
+        </div>
 
         <div id="inputDiv">
             <input class="searchInput" id="startValue" type="text" value="" autofocus placeholder="Keep Adding Places and searching...">
