@@ -304,8 +304,8 @@ function aboutArrow(event) {
 
   let j = 0;
 
-  let contentString = "<b>Your way</b><br>";
-
+  let contentString =  document.getElementById("chart_div").innerHTML +"<p>___________________________________________________________</p> <br/>" + document.getElementById("outputInfo_div").innerHTML;
+  contentString = contentString.replace(/replacetext/g,  document.getElementById("outputInfo").value);
   infoWindow.setContent(contentString);
   infoWindow.setPosition(event.latLng);
   infoWindow.open(map);

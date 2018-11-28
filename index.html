@@ -25,6 +25,19 @@
     </script>
 </head>
 <body>
+    <div id="inputDiv">
+        <input class="searchInput" id="startValue" type="text" value="" autofocus placeholder="Keep Adding Places and searching...">
+        <br>
+        <input class="searchInput" id="pushValue" type="button" value="Search">
+        <input class="searchInput" id="newArrow" type="button" value="+">
+        <input class="searchInput" id="addCustomInfo" type="button" onclick="showCustomForm()" value="Add Info">
+        <div id="chart_div">       
+          <div id="chart"></div>
+        </div>
+        <div id="outputInfo_div">
+          <textarea readonly cols="50" rows="13" id="outputInfo"> replacetext </textarea>
+        </div>
+    </div>  
     <div id="map"></div>
     <div>
         <div id="backgroundContact">
@@ -120,15 +133,7 @@
               </form>
         </div>
 
-        <div id="inputDiv">
-            <input class="searchInput" id="startValue" type="text" value="" autofocus placeholder="Keep Adding Places and searching...">
-            <br>
-            <input class="searchInput" id="pushValue" type="button" value="Search">
-            <input class="searchInput" id="newArrow" type="button" value="+">
-            <input class="searchInput" id="addCustomInfo" type="button" onclick="showCustomForm()" value="Add Info">
-            <div id="chart"></div>
-            <textarea readonly cols="50" rows="13" id="outputInfo">Hello, boi</textarea>
-        </div>     
+           
     </div>    
     <script src="script/variables.js"></script>
     <script src="script/firebase.js"></script>
