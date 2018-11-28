@@ -198,7 +198,7 @@ function createLine() {
             strokeWeight: evalWeight()
           };
 
-          createChart();
+          
 
           polyline = new google.maps.Polyline(polylineOptions);
           polylines.push(polyline);
@@ -227,6 +227,7 @@ function createLine() {
 
           // Event to create Info-window about the route
           polyline.addListener("click", aboutArrow);
+          polyline.addListener("mouseout", function(){ createChart()});
         });
       });
 
@@ -304,11 +305,11 @@ function aboutArrow(event) {
 
   let j = 0;
 
-  let contentString =  document.getElementById("chart_div").innerHTML +"<p>___________________________________________________________</p> <br/>" + document.getElementById("outputInfo_div").innerHTML;
+  let contentString = "<div id=\"chart\"></div>" + "<p>___________________________________________________________</p> <br/>" + document.getElementById("outputInfo_div").innerHTML;
   contentString = contentString.replace(/replacetext/g,  document.getElementById("outputInfo").value);
-  infoWindow.setContent(contentString);
+  infoWindow.setContent(contentString);  
   infoWindow.setPosition(event.latLng);
-  infoWindow.open(map);
+  infoWindow.open(map);   
 }
 
 function convertPolylineToJSON(coordinatesArr) {
