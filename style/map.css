@@ -1,4 +1,6 @@
 html, body {
+    color: #000
+    !important;
     height: 100%;
     margin: 0;
 }
