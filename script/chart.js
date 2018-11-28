@@ -1,5 +1,6 @@
 function createChart() {
   let chartPlace = document.getElementById("chart");
+  let but = document.getElementById("chartDisplayButton");
   let cInfo = ["Cultural"];
   let eInfo = ["Economic"];
   let pInfo = ["Political"];
@@ -35,6 +36,8 @@ function createChart() {
     }
   }
   chartPlace.style.display = "block";
+  but.style.display = "none";
+  
 
   var chart = c3.generate({
     bindto: "#chart",
