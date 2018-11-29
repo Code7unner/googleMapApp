@@ -41,6 +41,7 @@ function startApp() {
   });
 
   $("#pushValue").click(function() {
+    InfoWindow.close();
     createLine();
     $(this).focus();
   });
@@ -57,7 +58,7 @@ function initMap() {
 
   geocoder = new google.maps.Geocoder();
 
-  let latlng = new google.maps.LatLng(7.5653, 80.4303);
+  let latlng = new google.maps.LatLng(43.119809, 131.886924);
   let mapOptions = {
     zoom: 4,
     center: latlng,
@@ -119,20 +120,14 @@ function evalColor() {
 }
 
 function createLine() {
-  coords[coords.length - 1].push(new Coord(0, 0, ""));
-
-  coords[coords.length - 1][
-    coords[coords.length - 1].length - 1
-  ].Address = document.getElementById("startValue").value;
-
-  if (coords[coords.length - 1].length > 1) {
-    firstAddress =
-      coords[coords.length - 1][coords[coords.length - 1].length - 2].Address;
-    secondAddress =
-      coords[coords.length - 1][coords[coords.length - 1].length - 1].Address;
+  if (firstAddress == "none"){
+    firstAddress = document.getElementById("startValue").value;
+  } else if(secondAddress == "none"){s
+    secondAddress = document.getElementById("startValue").value;
   } else {
-    firstAddress =
-      coords[coords.length - 1][coords[coords.length - 1].length - 1].Address;
+    firstAddress = firstAddress = document.getElementById("startValue").value;
+    secondAddress = "none"
+    polyline.setMap(null);
   }
 
   let firstPosXY, secondPosXY;
@@ -145,7 +140,7 @@ function createLine() {
       ];
     fc = translateToEng(fc);
 
-    if (coords[coords.length - 1].length > 1) {
+    if (secondAddress != "none") {
       geocoder.geocode({ address: secondAddress }, async function(
         results,
         status
@@ -198,19 +193,11 @@ function createLine() {
             strokeWeight: evalWeight()
           };
 
-          
-
           polyline = new google.maps.Polyline(polylineOptions);
-          polylines.push(polyline);
+         
 
           firstLocation = convertLocationToLatLong(firstPosXY.toUrlValue());
           secondLocation = convertLocationToLatLong(secondPosXY.toUrlValue());
-          coords[coords.length - 1][coords[coords.length - 1].length - 1].X =
-            secondLocation[0];
-          coords[coords.length - 1][coords[coords.length - 1].length - 1].Y =
-            secondLocation[1];
-
-          lengthInMeters = 0; //Init the length of previous route
           lengthInMeters = Math.round(
             google.maps.geometry.spherical.computeLength(polyline.getPath())
           );
@@ -233,11 +220,6 @@ function createLine() {
       firstAddress = secondAddress;
     } else {
       firstLocation = convertLocationToLatLong(firstPosXY.toUrlValue());
-
-      coords[coords.length - 1][coords[coords.length - 1].length - 1].X =
-        firstLocation[0];
-      coords[coords.length - 1][coords[coords.length - 1].length - 1].Y =
-        firstLocation[1];
 
       plotMap(firstLocation);
 
@@ -304,8 +286,9 @@ function aboutArrow(event) {
 
   let j = 0;
 
-  let contentString = "<div id=\"chart\"></div>" + "<button id=\"chartDisplayButton\" onClick = \"createChart()\"> Dispaly chart </button>"  + "<p>___________________________________________________________</p> <br/>" + document.getElementById("outputInfo_div").innerHTML;
+  let contentString = "<div id=\"chart\"></div>" + "<button id=\"chartDisplayButton\" onClick = \"createChart(infoWindow)\"> Dispaly chart </button>"  + "<p>___________________________________________________________</p> <br/>" + document.getElementById("outputInfo_div").innerHTML;
   contentString = contentString.replace(/replacetext/g,  document.getElementById("outputInfo").value);
+  infoWindow.maxHeight = 500; 
   infoWindow.setContent(contentString);  
   infoWindow.setPosition(event.latLng);
   infoWindow.open(map);   

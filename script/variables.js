@@ -475,8 +475,8 @@ month.forEach(option => {
 var firstLocation;
 var secondLocation;
 
-var firstAddress;
-var secondAddress;
+var firstAddress = "none";
+var secondAddress = "none";
 
 var polyline;
 var polylineOptions;
