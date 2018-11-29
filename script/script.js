@@ -6,27 +6,6 @@ $(document).ready(function() {
   startApp();
 });
 
-function findLine(x, y) {
-  for (let i = 0; i < coords.length; i++) {
-    for (let j = 0; j < coords[i].length - 1; j++) {
-      var a =
-        (coords[i][j].Y - coords[i][j + 1].Y) * x +
-        (coords[i][j + 1].X - coords[i][j].X) * y +
-        (coords[i][j].X * coords[i][j + 1].Y -
-          coords[i][j + 1].X * coords[i][j].Y);
-
-      if (a > -0.5 && a < 0.5) {
-        let tempArr = [];
-
-        tempArr.push(coords[i][j]);
-        tempArr.push(coords[i][j + 1]);
-
-        return tempArr;
-      }
-    }
-  }
-}
-
 function random(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -152,9 +131,14 @@ function createLine() {
             results[0].address_components.length - 1
           ]["long_name"];
         sc = translateToEng(sc);
-        let lineSymbol = {
+
+        let forwardArrow = {
           path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
         };
+
+        let backwardArrow = {
+          path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW
+        }
 
         route = [firstPosXY, secondPosXY];
 
@@ -181,8 +165,12 @@ function createLine() {
             path: route,
             icons: [
               {
-                icon: lineSymbol,
+                icon: forwardArrow,
                 offset: myOffset
+              },
+              {
+                icon: backwardArrow,
+                offset: '0%'
               }
             ],
 
