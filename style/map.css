@@ -118,7 +118,6 @@ body {
 
 h2 {
   text-align:center;
-  padding:18px 0 18px 0;
   font-size: 1.4em;
 }
 
@@ -132,7 +131,7 @@ textarea {
 }
 
 input:first-of-type{    
-  margin-top:35px;
+  margin-top:5px;
 }
 
 input, textarea {
@@ -172,8 +171,7 @@ input, textarea {
 }
 
 button {
-  margin-top:15px;
-  margin-bottom:25px;
+  margin-bottom:5px;
   background-color:#2ABCA7;
   padding: 12px 45px;
   -ms-border-radius: 5px;
@@ -212,7 +210,7 @@ button {
 }
 
 
-#customContact{
+#customContact{;
     position: absolute;
     margin-left: 40%;
     opacity: 1;
@@ -341,6 +339,7 @@ select::-ms-expand {
 p {
     text-align: left;
     padding-left: 5px;
+    margin: 0%;
 }
 
 #submit {
