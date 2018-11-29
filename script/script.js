@@ -75,7 +75,13 @@ function evalWeight() {
         count += 3;
       }
     }
+
+    if (value < 0) {
+      return 2;
+    }
+
     return (value / count) * 2;
+
   } else return 4;
 }
 
@@ -109,7 +115,9 @@ function createLine() {
     firstAddress = firstAddress = document.getElementById("startValue").value;
     secondAddress = "none"
     polyline.setMap(null);
-    infoWindow.close();
+    if(infoWindow){
+      infoWindow.close();
+    }
   }
 
   let firstPosXY, secondPosXY;
@@ -301,4 +309,11 @@ function convertPolylineToJSON(coordinatesArr) {
   jsonPolyline = '{"coordinates":' + strCoordinatesPolyline + ":";
 
   console.log(jsonPolyline);
+}
+
+function closeForm() {
+  f1 = document.getElementById("customContact");
+  f2 = document.getElementById("backgroundContact");
+  f1.style.display = "none";
+  f2.style.display = "none";
 }
