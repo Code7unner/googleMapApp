@@ -122,12 +122,13 @@ function evalColor() {
 function createLine() {
   if (firstAddress == "none"){
     firstAddress = document.getElementById("startValue").value;
-  } else if(secondAddress == "none"){s
+  } else if(secondAddress == "none"){
     secondAddress = document.getElementById("startValue").value;
   } else {
     firstAddress = firstAddress = document.getElementById("startValue").value;
     secondAddress = "none"
     polyline.setMap(null);
+    infoWindow.close();
   }
 
   let firstPosXY, secondPosXY;
@@ -160,13 +161,11 @@ function createLine() {
         //Get firstCountry: secondCountry
         getData(fc, sc).then(function() {
           if (!noFill) {
-            let innerText = document.getElementById("outputInfo");
-            innerText.style.display = "block";
-            innerText.value = "Information about " + fc + " and " + sc + '\n\n';
+            outputContent = "Information about " + fc + " and " + sc + '\n\n';
             
-            innerText.value += "          Countries Inforamtion" + '\n\n';
+            outputContent += "          Countries Inforamtion" + '\n\n';
             for (let i = 1; i < countryList[countryList.length - 1]["events"].length; i++ ){
-              innerText.value += "Date: " + countryList[countryList.length - 1]["events"][i].date.CM + '.' +
+              outputContent += "Date: " + countryList[countryList.length - 1]["events"][i].date.CM + '.' +
                                          countryList[countryList.length - 1]["events"][i].date.CY +'\n' +
                                  "Cultural rating: "   + countryList[countryList.length - 1]["events"][i].culturalRating  + '\n' +                                 
                                  "Economic rating: "   + countryList[countryList.length - 1]["events"][i].economicRating   + '\n' +
@@ -175,8 +174,7 @@ function createLine() {
                                  "Info: " + countryList[countryList.length - 1]["events"][i].info + '\n\n';
             }
           } else {
-            let innerText = document.getElementById("outputInfo");
-            innerText.style.display = "none";
+            outputContent = "none"
           }
 
           polylineOptions = {
@@ -282,12 +280,17 @@ function setZoom() {
 }
 
 function aboutArrow(event) {
+  if(infoWindow){
+    infoWindow.close();
+  }
   infoWindow = new google.maps.InfoWindow();
 
   let j = 0;
 
-  let contentString = "<div id=\"chart\"></div>" + "<button id=\"chartDisplayButton\" onClick = \"createChart(infoWindow)\"> Dispaly chart </button>"  + "<p>___________________________________________________________</p> <br/>" + document.getElementById("outputInfo_div").innerHTML;
-  contentString = contentString.replace(/replacetext/g,  document.getElementById("outputInfo").value);
+  let contentString = "<div id=\"chart\"></div>" + "<button id=\"chartDisplayButton\" onClick = \"createChart(infoWindow)\"> Dispaly chart </button>"  +
+                       "<p>___________________________________________________________</p> <br/>"
+                      + "<textarea readonly cols=\"50\" rows=\"13\" id=\"outputInfo\"> replacetext </textarea>";
+  contentString = contentString.replace(/replacetext/g,  outputContent);
   infoWindow.maxHeight = 500; 
   infoWindow.setContent(contentString);  
   infoWindow.setPosition(event.latLng);

@@ -474,10 +474,11 @@ month.forEach(option => {
 
 var firstLocation;
 var secondLocation;
+var outputContent = "none";
 
 var firstAddress = "none";
 var secondAddress = "none";
-
+var infoWindow;
 var polyline;
 var polylineOptions;
 var route;

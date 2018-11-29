@@ -250,7 +250,7 @@ button {
     border: 1px solid #2ABCA7;
     -webkit-transition: .5s;
     transition: .5s;
-    display: none;
+    display: block;
     cursor: pointer;
     width:80%;
     color:#fff;
