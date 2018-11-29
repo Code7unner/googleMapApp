@@ -41,7 +41,9 @@ function initMap() {
   let mapOptions = {
     zoom: 4,
     center: latlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeControl: false,
+    streetViewControl: false
   };
 
   map = new google.maps.Map(document.getElementById("map"), mapOptions);
@@ -73,7 +75,7 @@ function evalWeight() {
         count += 3;
       }
     }
-    return value / count;
+    return (value / count) * 2;
   } else return 4;
 }
 
