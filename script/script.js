@@ -286,13 +286,15 @@ function aboutArrow(event) {
   let j = 0;
 
   let contentString = "<div id=\"chart\"></div>" + "<button id=\"chartDisplayButton\" onClick = \"createChart(infoWindow)\"> Dispaly chart </button>"  +
-                       "<p>___________________________________________________________</p> <br/>"
-                      + "<textarea readonly cols=\"50\" rows=\"13\" id=\"outputInfo\"> replacetext </textarea>";
+                       "<hr>"
+                      + "<textarea readonly cols=\"120\" rows=\"7\" id=\"outputInfo\"> replacetext </textarea>";
   contentString = contentString.replace(/replacetext/g,  outputContent);
-  infoWindow.maxHeight = 500; 
+
   infoWindow.setContent(contentString);  
-  infoWindow.setPosition(event.latLng);
+  infoWindow.setPosition(new google.maps.LatLng(event.latLng.lat(), event.latLng.lng())) ;
+
   infoWindow.open(map);   
+    
 }
 
 function convertPolylineToJSON(coordinatesArr) {
@@ -312,8 +314,7 @@ function convertPolylineToJSON(coordinatesArr) {
 }
 
 function closeForm() {
-  f1 = document.getElementById("customContact");
-  f2 = document.getElementById("backgroundContact");
-  f1.style.display = "none";
-  f2.style.display = "none";
+  mapApp.contacts_seen = false;
+  mapApp.custom_contact_seen = false;
+  mapApp.request_contact_seen = false;
 }

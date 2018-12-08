@@ -428,47 +428,61 @@ const month = [
   "12"
 ];
 
-var firstCoutrySelect = document.getElementById("CFCI").options;
-var secondCoutrySelect = document.getElementById("CSCI").options;
-var culturalCustomRatingSelect = document.getElementById("CCRI").options;
-var economicCustomRatingSelect = document.getElementById("CERI").options;
-var politicalCustomRatingSelect = document.getElementById("CPRI").options;
-var yearCustomSelect = document.getElementById("CCY").options;
-var monthCustomSelect = document.getElementById("CCM").options;
+initCustomForm = function(){  
+  var firstCoutrySelect = document.getElementById("CFCI").options;
+  var secondCoutrySelect = document.getElementById("CSCI").options;
+  var culturalCustomRatingSelect = document.getElementById("CCRI").options;
+  var economicCustomRatingSelect = document.getElementById("CERI").options;
+  var politicalCustomRatingSelect = document.getElementById("CPRI").options;
+  var yearCustomSelect = document.getElementById("CCY").options;
+  var monthCustomSelect = document.getElementById("CCM").options;
 
+  countryArrayENG.forEach(option =>
+    firstCoutrySelect.add(new Option(option, option))
+  );
 
-var culturalRatingSelect = document.getElementById("CRI").options;
-var economicRatingSelect = document.getElementById("ERI").options;
-var politicalRatingSelect = document.getElementById("PRI").options;
-var yearSelect = document.getElementById("CY").options;
-var monthSelect = document.getElementById("CM").options;
+  countryArrayENG.forEach(option =>
+    secondCoutrySelect.add(new Option(option, option))
+  );
 
-countryArrayENG.forEach(option =>
-  firstCoutrySelect.add(new Option(option, option))
-);
+  rating.forEach(option => {
+    culturalCustomRatingSelect.add(new Option(option, option));    
+    economicCustomRatingSelect.add(new Option(option, option));    
+    politicalCustomRatingSelect.add(new Option(option, option));
+  });
 
-countryArrayENG.forEach(option =>
-  secondCoutrySelect.add(new Option(option, option))
-);
+  years.forEach(option => {
+    yearCustomSelect.add(new Option(option, option));
+  });
 
-rating.forEach(option => {
-  culturalCustomRatingSelect.add(new Option(option, option));
-  culturalRatingSelect.add(new Option(option, option));
-  economicCustomRatingSelect.add(new Option(option, option));
-  economicRatingSelect.add(new Option(option, option));
-  politicalRatingSelect.add(new Option(option, option));
-  politicalCustomRatingSelect.add(new Option(option, option));
-});
+  month.forEach(option => {
+    monthCustomSelect.add(new Option(option, option));
+  });
+}
 
-years.forEach(option => {
-  yearSelect.add(new Option(option, option));
-  yearCustomSelect.add(new Option(option, option));
-});
+initRequestForm = function(){
 
-month.forEach(option => {
-  monthSelect.add(new Option(option, option));
-  monthCustomSelect.add(new Option(option, option));
-});
+  var culturalRatingSelect = document.getElementById("CRI").options;
+  var economicRatingSelect = document.getElementById("ERI").options;
+  var politicalRatingSelect = document.getElementById("PRI").options;
+  var yearSelect = document.getElementById("CY").options;
+  var monthSelect = document.getElementById("CM").options;
+  
+  rating.forEach(option => {
+    
+    culturalRatingSelect.add(new Option(option, option));    
+    economicRatingSelect.add(new Option(option, option));
+    politicalRatingSelect.add(new Option(option, option));    
+  });
+
+  years.forEach(option => {
+    yearSelect.add(new Option(option, option));
+  });
+
+  month.forEach(option => {
+    monthSelect.add(new Option(option, option));
+  });
+}
 
 
 

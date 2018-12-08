@@ -35,8 +35,10 @@ function createChart() {
         
     }
   }
+  // todo scale offset []
   chartPlace.style.display = "block";
   but.style.display = "none";
+  map.setCenter(new google.maps.LatLng(infoWindow.position.lat() , infoWindow.position.lng()))
   
 
   var chart = c3.generate({

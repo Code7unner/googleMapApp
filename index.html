@@ -1,8 +1,8 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Map</title>
-    <meta charset="UTF-8">
+	<title></title>	
+	<meta charset="UTF-8">
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBukuqbTIlOOkQCvbIu-ejFI_i4IejYPDY&libraries=places,geometry"></script>
     <script language="JavaScript" type="text/javascript" src="script/jquery.js"></script>
     <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
@@ -23,117 +23,34 @@
         };
         firebase.initializeApp(config);
     </script>
+	
 </head>
 <body>
-    <div id="inputDiv">
-        <input class="searchInput" id="startValue" type="text" value="" autofocus placeholder="Keep Adding Places and searching...">
-        <br>
-        <input class="searchInput" id="pushValue" type="button" value="Search">
-        <input class="searchInput" id="addCustomInfo" type="button" onclick="showCustomForm()" value="Add Info">        
-        
-    </div>  
-    <div id="map"></div>
-    <div>
-        <div id="backgroundContact">
-            <form id="contact">
-              <div class="container">
-                <div class="head">
-                    <div>
-                        <button class="x_but" onclick="closeForm()" type="button">X</button>
-                        <h2>Input information</h2>
 
-                        <input class="contactInput" id="CII" type="text" name="CI" placeholder="Countries Information" /><br />
+	<div id="map"></div>
+	<div id="map-App">
+		<transition name="fade">	
+			<login v-if="login_seen"></login>
+		</transition>	
+			
+		<im v-if="input_menu_seen"></im>
+		
+		<transition name="fade">	
+			<contacts v-if="contacts_seen"></contacts>
+		</transition>	
+		<transition name="slide-fade">
+			<request-contact v-if="request_contact_seen"></request-contact>
+		</transition>	
+		<transition name="slide-fade">
+			<custom-contact v-if="custom_contact_seen"></custom-contact>
+		</transition>	
+	</div>
 
-                        <p>Year</p>
-                        <div class="select">
-                          <select class="select saveselect" id="CY" name="CM"></select>
-                        </div>
-
-                        <p>Month</p>
-                        <div class="select">
-                          <select class="select saveselect" id="CM" name="CY"></select>
-                        </div>
-
-
-                        <p>Cultural rating</p>
-                        <div class="select">
-                          <select class="select saveselect" id="CRI" name="CR"></select>
-                        </div>
-
-
-                        <p>Economic rating</p>
-                        <div class="select">
-                          <select class="select saveselect" id="ERI" name="ER"></select>
-                        </div>
-
-                        <p>Political rating</p>
-                        <div class="select">
-                          <select class="select saveselect" id="PRI" name="PR"></select>
-                        </div>
-
-                        <div class="message">Message Sent</div>
-                          <button id="submit" type="button" onclick="takeInfo()">
-                        Send!
-                      </button>
-                    </div>
-                </div>
-              </div>
-            </form>
-            <form id="customContact">
-                <div class="container">
-                  <div class="head">
-                    <button class="x_but" onclick="closeForm()" type="button">X</button>
-                    <h2>Input information</h2>
-                  </div>          
-                    <div class="select">
-                        <select name="ccountryList" id="CFCI" class="select saveselect"></select>
-                    </div>  
-                    <div class="select">
-                        <select name="ccountryList" id="CSCI" class="select saveselect"></select><br/>
-                    </div> 
-
-                    <input class="contactInput" id="CCII" type="text" name="CI" placeholder="Countries Information" /><br />
-
-
-                    <p>Year</p>
-                    <div class="select">
-                        <select class="select saveselect" id="CCY" name="CYI"></select>
-                    </div>
-
-                    <p>Month</p>
-                    <div class="select">
-                      <select class="select saveselect" id="CCM" name="CMI"></select>
-                    </div>
-
-                    <p>Cultural rating</p>
-                    <div class="select">
-                      <select class="select saveselect" id="CCRI" name="CCRI"></select>
-                    </div>
-
-
-                    <p>Economic rating</p>
-                    <div class="select">
-                      <select class="select saveselect" id="CERI" name="CERI"></select>
-                    </div>
-
-                    <p>Political rating</p>
-                    <div class="select">
-                      <select class="select saveselect" id="CPRI" name="CPRI"></select>
-                    </div>
-
-                    <div class="message">Message Sent</div>
-                      <button id="submitCustom" type="button" onclick="takeCustomInfo()">
-                    Send!
-                  </button>
-                </div>
-              </form>
-        </div>
-
-           
-    </div>    
-    <script src="script/variables.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>	
+	<script src="script/vueScript.js"></script>
+	<script src="script/variables.js"></script>
     <script src="script/firebase.js"></script>
-    <script src="script/script.js"></script>
-    <script src="script/chart.js"></script>
+	<script type="text/javascript" src="script/script.js"></script>
+	<script src="script/chart.js"></script>
 </body>
 </html>

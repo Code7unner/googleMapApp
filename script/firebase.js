@@ -44,10 +44,8 @@ function getData(fc, sc) {
         let submit = confirm("Fill information about this country?");
 
         if (submit) {
-          let inputForm = document.getElementById("contact");
-          let backGround = document.getElementById("backgroundContact");
-          backGround.style.display = "block";
-          inputForm.style.display = "block";
+          mapApp.contacts_seen = true;
+          mapApp.request_contact_seen = true;
           noFill = true;
         }
       }
@@ -64,8 +62,8 @@ function takeInfo() {
   CR = document.getElementById("CRI").value;
   PR = document.getElementById("PRI").value;
 
-  let backGround = document.getElementById("backgroundContact");
-  backGround.style.display = "None";
+  mapApp.contacts_seen = false;
+  mapApp.request_contact_seen = false;
 
   let info = {
     info: CI,
@@ -97,8 +95,7 @@ function takeInfo() {
 function takeCustomInfo() {
   let CI, CR, CY, ER, PR, FC, SC, CM, bg, cf;
 
-  bg = document.getElementById("backgroundContact");
-  cf = document.getElementById("customContact");
+  
 
   FC = document.getElementById("CFCI").value;
   SC = document.getElementById("CSCI").value;
@@ -109,8 +106,8 @@ function takeCustomInfo() {
   ER = document.getElementById("CERI").value;
   PR = document.getElementById("CPRI").value;
 
-  bg.style.display = "none";
-  cf.style.display = "none";
+  mapApp.contacts_seen = false;
+  mapApp.custom_contact_seen = false;
 
   return firebase
     .database()
@@ -154,13 +151,8 @@ function takeCustomInfo() {
 }
 
 function showCustomForm() {
-  let bg, cf;
-
-  bg = document.getElementById("backgroundContact");
-  bg.style.display = "block";
-
-  cf = document.getElementById("customContact");
-  cf.style.display = "block";
+  mapApp.contacts_seen = true;
+  mapApp.custom_contact_seen = true;
 }
 
 function errData(err) {
