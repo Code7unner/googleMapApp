@@ -155,6 +155,29 @@ function showCustomForm() {
   mapApp.custom_contact_seen = true;
 }
 
+function signIn() {
+  let email = document.getElementById("input_email").value;
+  let password = document.getElementById("input_password").value;
+
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(function() {
+      mapApp.login_seen = false;
+    })
+    .catch(function(error) {
+      // Handle Errors here.
+      let errorCode = error.code;
+      let errorMessage = error.message;
+
+      if (errorCode === 'auth/wrong-password') {
+        alert('Wrong password.');
+      } else {
+        alert(errorMessage);
+      }
+    });
+}
+
 function errData(err) {
   console.log("Error!");
   console.log(err);

@@ -8,9 +8,9 @@ Vue.component('login',{
         <div class="login">
             <h1>Login</h1>
             <form method="post">
-                <input class="input_login" type="text" name="u" placeholder="Username" required="required" />
-                <input class="input_login" type="password" name="p" placeholder="Password" required="required" />
-                <button type="button" class="btn btn-primary btn-block btn-large">Let me in.</button>
+                <input class="input_login" id="input_email" type="email" name="u" placeholder="Email" required="required" />
+                <input class="input_login" id="input_password" type="password" name="p" placeholder="Password" required="required" />
+                <button type="button" onclick="signIn()" class="btn btn-primary btn-block btn-large">Let me in.</button>
             </form>
         </div>
     </div>    
