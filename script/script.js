@@ -20,7 +20,6 @@ function startApp() {
   });
 
   $("#pushValue").click(function() {
-    InfoWindow.close();
     createLine();
     $(this).focus();
   });
@@ -43,7 +42,9 @@ function initMap() {
     center: latlng,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     mapTypeControl: false,
-    streetViewControl: false
+    streetViewControl: false,
+    zoomControl: false,
+    fullscreenControl: false
   };
 
   map = new google.maps.Map(document.getElementById("map"), mapOptions);
@@ -123,11 +124,7 @@ function createLine() {
     secondAddress = document.getElementById("startValue").value;
   } else {
     firstAddress = firstAddress = document.getElementById("startValue").value;
-    secondAddress = "none"
-    //polyline.setMap(null);
-    // if(infoWindow){
-    //   infoWindow.close();
-    // }
+    secondAddress = "none";
   }
 
   let firstPosXY, secondPosXY;
@@ -195,8 +192,9 @@ function createLine() {
 
           polyline = new google.maps.Polyline(polylineOptions);
           polyline.line_id = lineCount++;
+          let routeName = fc + '-' + sc;
 
-          polylines.push({line: polyline, draw: true});
+          polylines.push({line: polyline, draw: true, name: routeName});
 
           infoWindow = new google.maps.InfoWindow();
 

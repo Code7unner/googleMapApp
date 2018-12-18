@@ -417,10 +417,14 @@ p {
 }
 
 #arrowList{
+    padding-bottom: 1px;
+    width: 100px;
     z-index: 100000000;
-    right: 10px;
+    right: 1px;
+    top: 1px;
     position: absolute;
-    background-color: #2ABCA7;
+    background-color: rgb(212,75,56);
+    border-radius: 5px;
 }
 
 .x_but{
@@ -452,4 +456,25 @@ p {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
   opacity: 0;
+}
+
+/*ARROWS_BUTTON*/
+.arrow_class_list {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    background: rgb(212,75,56);
+    transition: 0.2s;
+    border-color: #000000;
+}
+
+.arrow_class_list:hover {
+    background: rgb(232, 95, 76);
+}
+
+.arrow_class_list:focus {
+    background: rgb(255, 193, 0);
 }
