@@ -106,6 +106,16 @@ function evalColor() {
   } else return myColors[3];
 }
 
+function drawLines() {
+  polylines.forEach( function(line) {
+     if(line.draw) {
+       line.line.setMap(map);
+     } else {
+       line.line.setMap(null);
+     }
+  });
+}
+
 function createLine() {
   if (firstAddress == "none"){
     firstAddress = document.getElementById("startValue").value;
@@ -114,10 +124,10 @@ function createLine() {
   } else {
     firstAddress = firstAddress = document.getElementById("startValue").value;
     secondAddress = "none"
-    polyline.setMap(null);
-    if(infoWindow){
-      infoWindow.close();
-    }
+    //polyline.setMap(null);
+    // if(infoWindow){
+    //   infoWindow.close();
+    // }
   }
 
   let firstPosXY, secondPosXY;
@@ -131,15 +141,9 @@ function createLine() {
     fc = translateToEng(fc);
 
     if (secondAddress != "none") {
-      geocoder.geocode({ address: secondAddress }, async function(
-        results,
-        status
-      ) {
+      geocoder.geocode({ address: secondAddress }, async function(results, status) {
         secondPosXY = results[0].geometry.location;
-        var sc =
-          results[0].address_components[
-            results[0].address_components.length - 1
-          ]["long_name"];
+        var sc = results[0].address_components[results[0].address_components.length - 1]["long_name"];
         sc = translateToEng(sc);
 
         let forwardArrow = {
@@ -148,7 +152,7 @@ function createLine() {
 
         let backwardArrow = {
           path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW
-        }
+        };
 
         route = [firstPosXY, secondPosXY];
 
@@ -190,6 +194,26 @@ function createLine() {
           };
 
           polyline = new google.maps.Polyline(polylineOptions);
+          polyline.line_id = lineCount++;
+
+          polylines.push({line: polyline, draw: true});
+
+          infoWindow = new google.maps.InfoWindow();
+
+          let j = 0;
+          let chartID = "chart" + (lineCount - 1);
+          let chartCreateFunction = "createChart(" + (lineCount - 1) + ")"
+          let butID = "chartDisplayButton" + (lineCount - 1);
+          let contentString = "<div id=" + chartID + "></div>" + "<button class=\"chartDisplayButton\" id=" + butID + "  onClick =" + chartCreateFunction + ">  Dispaly chart </button>"  +
+            "<hr>"
+            + "<textarea readonly cols=\"120\" rows=\"7\" id=\"outputInfo\"> replacetext </textarea>";
+          contentString = contentString.replace(/replacetext/g,  outputContent);
+
+          infoWindow.setContent(contentString);
+
+          infoWindows.push(infoWindow);
+
+
          
 
           firstLocation = convertLocationToLatLong(firstPosXY.toUrlValue());
@@ -199,7 +223,7 @@ function createLine() {
           );
           allLengthInMeters += lengthInMeters;
 
-          polyline.setMap(map);
+          drawLines();
 
           //Work with increasing the map
           plotMap(firstLocation, secondLocation);
@@ -278,22 +302,15 @@ function setZoom() {
 }
 
 function aboutArrow(event) {
-  if(infoWindow){
-    infoWindow.close();
+  let lineId = this.line_id;
+
+  if(infoWindows[lineId]){
+    infoWindows[lineId].close();
   }
-  infoWindow = new google.maps.InfoWindow();
 
-  let j = 0;
+  infoWindows[lineId].setPosition(new google.maps.LatLng(event.latLng.lat(), event.latLng.lng())) ;
 
-  let contentString = "<div id=\"chart\"></div>" + "<button id=\"chartDisplayButton\" onClick = \"createChart(infoWindow)\"> Dispaly chart </button>"  +
-                       "<hr>"
-                      + "<textarea readonly cols=\"120\" rows=\"7\" id=\"outputInfo\"> replacetext </textarea>";
-  contentString = contentString.replace(/replacetext/g,  outputContent);
-
-  infoWindow.setContent(contentString);  
-  infoWindow.setPosition(new google.maps.LatLng(event.latLng.lat(), event.latLng.lng())) ;
-
-  infoWindow.open(map);   
+  infoWindows[lineId].open(map);
     
 }
 

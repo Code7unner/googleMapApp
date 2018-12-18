@@ -27,12 +27,13 @@
 </head>
 <body>
 
-	<div id="map"></div>
+
 	<div id="map-App">
+		<div id="map"></div>
 		<transition name="fade">	
 			<login v-if="login_seen"></login>
 		</transition>	
-			
+		<arrow-list></arrow-list>
 		<im v-if="input_menu_seen"></im>
 		
 		<transition name="fade">	
@@ -43,12 +44,13 @@
 		</transition>	
 		<transition name="slide-fade">
 			<custom-contact v-if="custom_contact_seen"></custom-contact>
-		</transition>	
-	</div>
+		</transition>
 
+
+	</div>
+	<script src="script/variables.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>	
 	<script src="script/vueScript.js"></script>
-	<script src="script/variables.js"></script>
     <script src="script/firebase.js"></script>
 	<script type="text/javascript" src="script/script.js"></script>
 	<script src="script/chart.js"></script>

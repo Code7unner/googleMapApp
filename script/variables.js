@@ -507,6 +507,11 @@ var myColor;
 var newCoordinatesArr = [];
 var coords = [];
 var polylines = [];
+var infoWindows = [];
+var lineCount = 0;
+
+
+var selectedArrow = 0;
 
 var strCoordinatesPolyline;
 var jsonPolyline;

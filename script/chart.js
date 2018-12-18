@@ -1,6 +1,8 @@
-function createChart() {
-  let chartPlace = document.getElementById("chart");
-  let but = document.getElementById("chartDisplayButton");
+function createChart(id) {
+  let elemId = "chart" + id;
+  let butId = "chartDisplayButton" + id;
+  let chartPlace = document.getElementById(elemId);
+  let but = document.getElementById(butId);
   let cInfo = ["Cultural"];
   let eInfo = ["Economic"];
   let pInfo = ["Political"];
@@ -9,7 +11,7 @@ function createChart() {
                     '2019-01-01', '2019-02-02', '2019-03-03', '2019-04-04', '2019-05-05', '2019-06-06', '2019-07-07', '2019-08-08', '2019-09-09', '2019-10-10', '2019-11-11', '2019-12-12']
 
                   
-  let country = countryList[countryList.length - 1];
+  let country = countryList[id];
   let cScore = 0;
   let eScore = 0;
   let pScore = 0;
@@ -39,10 +41,11 @@ function createChart() {
   chartPlace.style.display = "block";
   but.style.display = "none";
   map.setCenter(new google.maps.LatLng(infoWindow.position.lat() , infoWindow.position.lng()))
-  
+
+  let bindID = "#" + elemId;
 
   var chart = c3.generate({
-    bindto: "#chart",
+    bindto: bindID,
     data: {
       x: 'x',
       columns: [dates, cInfo, eInfo, pInfo]

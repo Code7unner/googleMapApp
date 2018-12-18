@@ -334,7 +334,7 @@ button {
     z-index: 49;
 }
 
-#chartDisplayButton{
+.chartDisplayButton{
   width: 100%
 }
 
@@ -404,12 +404,24 @@ p {
     margin: 0%;
 }
 
+#map-App{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+
 #submit {
     background-color:#FAFAFA;
     color:#2ABCA7;
 }
 
-
+#arrowList{
+    z-index: 100000000;
+    right: 10px;
+    position: absolute;
+    background-color: #2ABCA7;
+}
 
 .x_but{
   position: absolute;

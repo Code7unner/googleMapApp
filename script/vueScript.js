@@ -15,7 +15,7 @@ Vue.component('login',{
         </div>
     </div>    
     `
-})
+});
 Vue.component('im',{
     template: `
     <div id="inputDiv">
@@ -24,7 +24,7 @@ Vue.component('im',{
         <input class="searchInput" id="addCustomInfo" type="button" onclick="showCustomForm()" value="Add Info">
      </div>
      `
-})
+});
 
 Vue.component('custom-contact',{
     template: `
@@ -77,7 +77,7 @@ Vue.component('custom-contact',{
                 </div>
               </form>    
     `
-})
+});
 
 Vue.component('request-contact',{
     template: `
@@ -126,7 +126,7 @@ Vue.component('request-contact',{
               </div>
             </form>
     `
-})
+});
 
 Vue.component('contacts',{
     template:`
@@ -135,22 +135,43 @@ Vue.component('contacts',{
     `
 })
 
+Vue.component('arrowList',{
+    template:`
+        <div id="arrowList">
+            <button v-for="line in lines"  @click="lineChange(line)" >bla bla</button>
+        </div>
+    `,
+    data() {
+        return{
+            lines: polylines
+        }
+    },
+    methods: {
+        lineChange: function(line) {
+            line.draw = !line.draw
+            drawLines();
+        }
+    }
+})
+
 var mapApp = new Vue({
   el: '#map-App',
   data:{
-    contacts_seen: false,
-    custom_contact_seen: false,
-    request_contact_seen: false,
-    input_menu_seen: true,
-    login_seen: true
+      contacts_seen: false,
+      custom_contact_seen: false,
+      request_contact_seen: false,
+      input_menu_seen: true,
+      login_seen: true,
+      lines: polylines
   },
   methods:{
       ready: function() {
-      this.listUsers();
-      Vue.nextTick(function () {
-          this.installOWLcarousel();
-      }.bind(this))
-    }
+          this.listUsers();
+          Vue.nextTick(function () {
+              this.installOWLcarousel();
+          }.bind(this))
+      }
+
 
   }
 })
