@@ -138,7 +138,7 @@ Vue.component('contacts',{
 Vue.component('arrowList',{
     template:`
         <div id="arrowList">
-            <button class="arrow_class_list" v-for="line in lines"  @click="lineChange(line)" >{{line.name}}</button>
+            <button class="arrow_class_list" v-for="line in lines" :class="[ line.draw == true ? 'but_on' : 'but_off' ]"  @click="lineChange(line)" >{{line.name}}</button>
         </div>
     `,
     data() {
