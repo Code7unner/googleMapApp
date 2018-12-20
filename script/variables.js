@@ -390,7 +390,7 @@ const countryArrayRUS = [
   "Украина",
   "Объединенные Арабские Эмираты",
   "Великобритания",
-  "Соединенные Штаты",
+  "Соединенные Штаты Америки",
   "Уругвай",
   "Узбекистан",
   "Вануату",
@@ -498,6 +498,8 @@ var polylineOptions;
 var route;
 var lengthInMeters;
 
+
+
 var allLengthInMeters = 0;
 
 var map;
@@ -525,3 +527,4 @@ var firstCountry;
 var secondCountry;
 var countryList = [];
 var noFill = false;
+var mapReady = false;

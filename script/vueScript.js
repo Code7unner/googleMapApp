@@ -8,6 +8,7 @@ Vue.component('login',{
         <div class="login">
             <h1>Login</h1>
             <form method="post">
+                <slot></slot>
                 <input class="input_login" id="input_email" type="email" name="u" placeholder="Email" required="required" />
                 <input class="input_login" id="input_password" type="password" name="p" placeholder="Password" required="required" />
                 <button type="button" onclick="signIn()" class="btn btn-primary btn-block btn-large">Let me in.</button>
@@ -162,7 +163,8 @@ var mapApp = new Vue({
       request_contact_seen: false,
       input_menu_seen: true,
       login_seen: true,
-      lines: polylines
+      lines: polylines,
+      mapReady: mapReady
   },
   methods:{
       ready: function() {

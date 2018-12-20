@@ -31,14 +31,18 @@
 	<div id="map-App">
 		<div id="map"></div>
 		<transition name="fade">	
-			<login v-if="login_seen"></login>
+			<login v-if="(login_seen || !mapReady)">
+				<transition name="fade">
+					<img width="300" height="300" class="loading_image" v-if="(!login_seen && !mapReady) " src="src/loading.gif">
+				</transition>
+			</login>
 		</transition>	
 		<arrow-list></arrow-list>
 		<im v-if="input_menu_seen"></im>
 		
 		<transition name="fade">	
 			<contacts v-if="contacts_seen"></contacts>
-		</transition>	
+		</transition>
 		<transition name="slide-fade">
 			<request-contact v-if="request_contact_seen"></request-contact>
 		</transition>	
