@@ -110,12 +110,11 @@ function evalWeight() {
       }
     }
 
-    if (value <= 0) {
-      return 2;
-    }
-
-    return (value / count) * 2;
-
+    value = value / count;
+    if (value <= 0) return 2;
+    else if (value > 0 && value < 2.00) return 4;
+    else if (value > 1.99 && value < 3) return 6;
+    else if (value > 2.99 && value < 5.01) return 8;
   } else return 4;
 }
 
@@ -134,11 +133,11 @@ function evalColor() {
     }
 
     value = value / count;
-    if (value >= 0 && value < 2) return myColors[0];
+    if (value >= 0 && value < 2) return myColors[3];
     else if (value > 1.99 && value < 3) return myColors[1];
     else if (value > 2.99 && value < 5.01) return myColors[2];
-    else return myColors[4];
-  } else return myColors[3];
+    else if (value < 0) return myColors[0];
+  } else return myColors[4];
 }
 
 function drawLines() {

@@ -40,7 +40,7 @@ function createChart(id) {
   // todo scale offset []
   chartPlace.style.display = "block";
   but.style.display = "none";
-  map.setCenter(new google.maps.LatLng(infoWindow.position.lat() , infoWindow.position.lng()))
+  //map.setCenter(new google.maps.LatLng(infoWindow.position.lat() , infoWindow.position.lng()))
 
   let bindID = "#" + elemId;
 

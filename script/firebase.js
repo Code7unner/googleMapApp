@@ -130,7 +130,9 @@ function takeCustomInfo() {
           date: { CM, CY }
         };
 
+
       countryList[countryList.length - 1]["events"].push(info);
+      countryList[countryList.length - 1]["IsFill"] = true;
 
       pushData(
         countryList[countryList.length - 1].firstCountry,

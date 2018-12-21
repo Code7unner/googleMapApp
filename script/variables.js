@@ -519,7 +519,7 @@ var strCoordinatesPolyline;
 var jsonPolyline;
 
 const myOffset = "100%";
-const myColors = ["red", "yellow", "green", "black"]; //red, blue, green, yellow, black
+const myColors = ["red", "yellow", "green", "blue", "black"]; //red, blue, green, yellow, black
 const myOpacity = 1;
 
 //DB
